@@ -8,6 +8,11 @@ and open the template in the editor.
     <head>
         <meta charset="UTF-8">
         <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.9.0/sweetalert2.css">
+        
+        <!-- Include a polyfill for ES6 Promises (optional) for IE11 and Android browser -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.9.0/sweetalert2.js"></script> 
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script> 
         <title></title>
     </head>
     <body>
@@ -129,10 +134,10 @@ and open the template in the editor.
             $text = guardarJson($response);
 
             if ($text["Result"] == "Success") {
-                echo "<script>alert('Usuario creado con exito')</script>";
+                echo "<script>swal({title: 'Correcto',text: 'Registro exitoso', type: 'success',confirmButtonText: 'Cool'});</script>";
             } else {
                 $r = $text["Result"];
-                echo "<script>alert('$r')</script>";
+                echo "<script>swal({ title: 'Error!',  text: ".$r.",  type: 'error',  confirmButtonText: 'Cool'})</script>";
             }
         }
 
@@ -146,10 +151,27 @@ and open the template in the editor.
             $text = guardarJson($response);
             
             if ($text["Result"] == "Success") {
-                echo "<script>alert('Usuario eliminado con exito')</script>";
+                echo "<script>swal({title: 'Correcto',text: 'Autenticacion exitosa', type: 'success',confirmButtonText: 'Cool'});</script>";
             } else {
                 $r = $text["Result"];
-                echo "<script>alert('$r')</script>";
+                echo "<script>swal({ title: 'Error!',  text: '$r',  type: 'error',  confirmButtonText: 'Cool'})</script>";
+            }
+        }
+
+        if ($accion === "autenticacion") {
+            $email = $_POST["email"];
+            $password = $_POST["password"];
+            $file = $_POST["file"];
+            $idioma = $_POST["idioma"];    
+            $response = $myVoiceIt->authentication("$email", "$password", "$file", "85", "$idioma");
+
+            $text = guardarJson($response);
+
+            if ($text["Result"] == "Success") {
+                echo "<script>swal({title: 'Correcto',text: 'Autenticacion exitosa', type: 'success',confirmButtonText: 'Cool'});</script>";
+            } else {
+                $r = $text["Result"];
+                echo "<script>swal({ title: 'Error!',  text: '$r',  type: 'error',  confirmButtonText: 'Cool'})</script>";
             }
         }
 
