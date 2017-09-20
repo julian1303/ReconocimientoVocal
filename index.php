@@ -7,11 +7,12 @@ and open the template in the editor.
 <html>
     <head>
         <meta charset="UTF-8">
+        <link rel="stylesheet" href="css/style.css">
         <title></title>
     </head>
     <body>
-
-        <form action="action.php"  method="post">
+      <div class="container">
+        <form id="contact" action="action.php"  method="post">
                 <h3>Crear usuario</h3>                
                 <fieldset>
                     <input placeholder="Nombres" type="text" name="firsName" tabindex="1" required autofocus>
@@ -32,6 +33,7 @@ and open the template in the editor.
                     <input value="Crear usuario" type="submit"  name="accion" id="contact-submit" data-submit="...Sending" >
                 </fieldset>                
             </form>
+            <div class="container">
         
 
         <?php
