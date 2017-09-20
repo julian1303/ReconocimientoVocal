@@ -12,7 +12,7 @@ and open the template in the editor.
     </head>
     <body>
       <div class="container">
-        <form id="contact" action="action.php"  method="post">
+        <form id="contact" action="index.php"  method="post">
                 <h3>Crear usuario</h3>                
                 <fieldset>
                     <input placeholder="Nombres" type="text" name="firsName" tabindex="1" required autofocus>
@@ -33,59 +33,135 @@ and open the template in the editor.
                     <input value="Crear usuario" type="submit"  name="accion" id="contact-submit" data-submit="...Sending" >
                 </fieldset>                
             </form>
-            <div class="container">
-        
+      </div><!-- Crear usuario-->
 
-        <?php
-        /* require_once("VoiceIt.php");
-          $myVoiceIt = new VoiceIt("ae6e25717c44451280823f8615ed454a");
+      <div class="container">  
+            <form id="contact" action="index.php" method="post">
+                <h3>Eliminar usuario</h3>  
+                <fieldset>
+                    <input placeholder="Correo electronico" type="email" name="email" tabindex="6" required>
+                </fieldset>                
+                <fieldset>
+                    <input placeholder="Contraseña" type="password" name="password" tabindex="7" required>
+                </fieldset> 
+                <fieldset>
+                    <input value="Eliminar usuario" type="submit"  name="accion" id="contact-submit" data-submit="...Sending" >
+                </fieldset>                
+            </form>
+        </div><!-- eliminar usuario-->
 
-          /*
-          Now myVoiceIt is an instance of the VoiceIt class and can be used to make various different API Calls, as documented below.
+        <div class="container">  
+            <form id="contact" action="index.php" method="post" target="TheWindow">
+                <h3>Crear huella vocal</h3>   
 
+                <fieldset>
+                    <input placeholder="Correo electronico" type="email" name="email" tabindex="8" required>
+                </fieldset>
 
+                <fieldset>
+                    <input placeholder="Contraseña" type="password" name="password" tabindex="9" required>
+                </fieldset> 
 
-          $response = $myVoiceIt->createUser("developer@voiceit-tech.com", "d0CHipUXOk", "John", "Doe", "530-956-7831", "", "");
+                <fieldset>
+                    <input placeholder="Tu voz" type="file" name="file" tabindex="10" required autofocus>
+                </fieldset> 
 
-          echo "<br>", json_encode($response);
+                <fieldset>
+                    Idioma
+                    <select name="idioma">
+                        <option>es-CO</option>
+                        <option>en-US</option>
+                    </select>   
+                </fieldset>
+                
+                <fieldset>
+                    <input value="Crear huella" type="submit"  name="accion" id="contact-submit" data-submit="...Sending" >
+                </fieldset>  
+          </form>
+        </div><!-- crear huella vocal-->
 
+        <div class="container">  
+            <form id="contact" action="index.php" method="post">
+                <h3>Autenticar</h3>   
 
-          $response = $myVoiceIt->deleteUser("developer@voiceit-tech.com", "d0CHipUXOk");
-          echo "<br>", json_encode($response);
-         */
+                <fieldset>
+                    <input placeholder="Correo electronico" type="email" name="email" tabindex="11" required>
+                </fieldset>
+                <fieldset>
+                    <input placeholder="Contraseña" type="password" name="password" tabindex="12" required>
+                </fieldset> 
 
-        /*
-          $url = 'https://siv.voiceprintportal.com/sivservice/api/users';
-          $headr = array();
-          $headr[] = 'Accept: application/json';
-          $headr[] = 'VsitEmail: ' . "developer@voiceit-tech.com";
-          $headr[] = 'VsitPassword: ' . hash('sha256', "d0CHipUXOk");
+                <fieldset>
+                    <input placeholder="Tu voz" type="file" name="file" tabindex="13" required autofocus>
+                </fieldset>
+                <fieldset>
+                    <select name="idioma">
+                        <option>es-CO</option>
+                        <option>en-US</option>
+                    </select>                                         
+                    <fieldset>
+                        <input value="autenticacion" type="submit"  name="accion" id="contact-submit" data-submit="...Sending" >
+                    </fieldset>  
 
-          try {
-          $crl = curl_init();
-
-          if (FALSE === $crl)
-          throw new Exception('failed to initialize');
-
-
-          curl_setopt($crl, CURLOPT_URL, $url);
-          curl_setopt($crl, CURLOPT_CUSTOMREQUEST, "DELETE");
-          curl_setopt($crl, CURLOPT_HTTPHEADER, $headr);
-          curl_setopt($crl, CURLOPT_RETURNTRANSFER, true);
-          $reply = curl_exec($crl);
-
-          $content = curl_exec($crl);
-
-          if (FALSE === $content)
-          throw new Exception(curl_error($crl), curl_errno($crl));
-
-          // ...process $content now
-          } catch (Exception $e) {
-
-          trigger_error(sprintf(
-          'Curl failed with error #%d: %s', $e->getCode(), $e->getMessage()), E_USER_ERROR);
-          } */
-        ?>
+            </form>
+        </div><!-- autenticar-->
 
     </body>
 </html>
+
+    <?php
+        require_once("VoiceIt.php");
+        $myVoiceIt = new VoiceIt("ae6e25717c44451280823f8615ed454a");
+
+        $accion = $_POST["accion"];
+
+
+        if ($accion === "Crear usuario") {
+
+            $email = $_POST["email"];
+            $password = $_POST["password"];
+            $firsName = $_POST["firsName"];
+            $lastName = $_POST["lastName"];
+            $tel = $_POST["tel"];
+
+            $response = $myVoiceIt->createUser($email, $password, $firsName, $lastName, $tel, "", "");
+
+            $text = guardarJson($response);
+
+            if ($text["Result"] == "Success") {
+                echo "<script>alert('Usuario creado con exito')</script>";
+            } else {
+                $r = $text["Result"];
+                echo "<script>alert('$r')</script>";
+            }
+        }
+
+        if ($accion === "Eliminar usuario") {
+
+            $email = $_POST["email"];
+            $password = $_POST["password"];
+
+            $response = $myVoiceIt->deleteUser("$email", "$password");
+
+            $text = guardarJson($response);
+            
+            if ($text["Result"] == "Success") {
+                echo "<script>alert('Usuario eliminado con exito')</script>";
+            } else {
+                $r = $text["Result"];
+                echo "<script>alert('$r')</script>";
+            }
+        }
+
+        function guardarJson($response) {
+            $file = 'datos.json';
+            file_put_contents($file, $response);
+
+            $data = file_get_contents("datos.json");
+            $text = json_decode($data, true);
+
+            return $text;
+        }
+
+        
+        ?>
