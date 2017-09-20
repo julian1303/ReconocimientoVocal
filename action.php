@@ -1,7 +1,7 @@
 
     <?php
     require_once("VoiceIt.php");
-    $myVoiceIt = new VoiceIt("520e77950126446e94009d2b5bba85df");
+    $myVoiceIt = new VoiceIt("ae6e25717c44451280823f8615ed454a");
 
     /*
       Now myVoiceIt is an instance of the VoiceIt class and can be used to make various different API Calls, as documented below.
