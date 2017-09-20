@@ -11,9 +11,28 @@ and open the template in the editor.
     </head>
     <body>
 
-        <form action="action.php" method="post">
-            <p><input value="Crear usuario"type="submit" /></p>
-        </form>
+        <form action="action.php"  method="post">
+                <h3>Crear usuario</h3>                
+                <fieldset>
+                    <input placeholder="Nombres" type="text" name="firsName" tabindex="1" required autofocus>
+                </fieldset>
+                <fieldset>
+                    <input placeholder="Apellidos" type="text" name="lastName" tabindex="2" required autofocus>
+                </fieldset>
+                <fieldset>
+                    <input placeholder="Correo electronico" type="email" name="email" tabindex="3" required>
+                </fieldset>
+                <fieldset>
+                    <input placeholder="Telefono (Opcional)" type="tel" name="tel" tabindex="4" >
+                </fieldset>
+                <fieldset>
+                    <input placeholder="Contraseña" type="password" name="password" tabindex="5" required>
+                </fieldset>
+                <fieldset>
+                    <input value="Crear usuario" type="submit"  name="accion" id="contact-submit" data-submit="...Sending" >
+                </fieldset>                
+            </form>
+        
 
         <?php
         /* require_once("VoiceIt.php");
