@@ -108,6 +108,34 @@ fieldset {
   padding: 10px;
   font-size: 15px;
 }
+#contact button{
+   cursor: pointer;
+  width: 100%;
+  border: none;
+  background: #4c6eaf;
+  color: #FFF;
+  margin: 0 0 5px;
+  padding: 10px;
+  font-size: 15px
+}
+#contact button:disabled,
+button[disabled]{
+  border: 1px solid #999999;
+  background-color: #cccccc;
+  color: #666666;
+}
+#contact button:disabled:hover,
+button[disabled]{
+  border: 1px solid #999999;
+  background-color: #cccccc;
+  color: #666666;
+}
+#contact button:hover{
+   background: #76c8e9;
+  -webkit-transition: background 0.3s ease-in-out;
+  -moz-transition: background 0.3s ease-in-out;
+  transition: background-color 0.3s ease-in-out;
+}
 
 #contact input[type="submit"]:hover {
   background: #76c8e9;

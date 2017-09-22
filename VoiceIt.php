@@ -115,12 +115,12 @@ class VoiceIt {
         $headr[] = 'VsitPassword: ' . hash('sha256', $passwd);
         $headr[] = 'VsitDeveloperId: ' . $this->developerId;
         $headr[] = 'ContentLanguage: ' . $contentLanguage;
-        $headr[] = 'VsitFirstName: ' . $firstName;
+       /* $headr[] = 'VsitFirstName: ' . $firstName;
         $headr[] = 'VsitLastName: ' . $lastName;
         $headr[] = 'VsitPhone1: ' . $phone1;
         $headr[] = 'VsitPhone2: ' . $phone2;
         $headr[] = 'VsitPhone3: ' . $phone3;
-        $headr[] = 'PlatformID: ' . $this->platformId;
+        $headr[] = 'PlatformID: ' . $this->platformId;*/
 
         //cURL starts
         $crl = curl_init();

@@ -41,8 +41,13 @@ function Grabar(button){
   setTimeout(function(){
     button.value=LinkDescarga;
   },3500);
-
   
+}
+
+function blobToDataURL(blob) {
+    var a = new FileReader();
+    a.onload = function(e) {callback(e.target.result);}
+    a.readAsDataURL(blob);
 }
 
 function ObtenerURL(){
@@ -81,12 +86,14 @@ function createDownloadLink() {
 }
 
 function handleWAV(blob) {
-  var tableRef = document.getElementById('recordingslist');
+
+
   if (currentEditedSoundIndex !== -1) {
     $('#recordingslist tr:nth-child(' + (currentEditedSoundIndex + 1) + ')').remove();
   }
 
   var url = URL.createObjectURL(blob);
+
   LinkDescarga=url;
   var toggler;
   

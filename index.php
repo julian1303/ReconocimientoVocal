@@ -58,20 +58,20 @@
     </form>
 </div><!-- eliminar usuario-->
 
-<div class="container">  
+<div id="CrearHuella" class="container">  
     <form id="contact" action="index.php" method="post">
         <h3>Crear huella vocal</h3>   
 
         <fieldset>
-            <input placeholder="Correo electronico" type="email" name="email" tabindex="8" required>
+            <input id="correo" placeholder="Correo electronico" type="email" name="email" tabindex="8" required>
         </fieldset>
 
         <fieldset>
-            <input placeholder="Contraseña" type="password" name="password" tabindex="9" required>
+            <input id="pass" placeholder="Contraseña" type="password" name="password" tabindex="9" required>
         </fieldset> 
 
         <fieldset>
-            <button value="" name="descarga" onclick="Grabar(this);">Record</button>
+            <button id="linkWav" value="" name="descarga" onclick="Grabar(this);">Record</button>
         </fieldset> 
 
         <fieldset>
@@ -83,7 +83,7 @@
         </fieldset>
 
         <fieldset>
-            <input value="Crear huella" type="submit"  name="accion" id="contact-submit" data-submit="...Sending" >
+            <button id="CrearHuellaB" value="Crear Huella" type="button" onclick="loadLog()">Crear huella</button>
         </fieldset>  
     </form>
 </div><!-- crear huella vocal-->
@@ -123,10 +123,29 @@
     </div><!-- autenticar-->
 
 
+    <script>
+        function loadLog(){
+            var correo = document.getElementById("correo").value;
+            var contraseña = document.getElementById("pass").value;
+            var linkDescarga = document.getElementById("linkWav").value;
+            var buttonN = document.getElementById("CrearHuellaB").value;
+            var xhttp = new XMLHttpRequest();
+                xhttp.onreadystatechange = function(){
+                    if (xhttp.readyState == 4 && xhttp.status ==200){
+                        swal({title: 'Correcto',text: xhttp.responseText, type: 'success',confirmButtonText: 'Cool'});
+
+                    }
+                };
+            xhttp.open("POST", "action.php", true);
+            xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            xhttp.send("email="+correo+"&password="+contraseña+"&linkDescarga="+linkDescarga+"&buttonAction"+buttonN+"");
+            
+        }
+    </script>
     
     <script src="js/lib/recorder.js"></script>
     <script src="js/recordLive.js"></script>
-    
+
     
 
 </body>
