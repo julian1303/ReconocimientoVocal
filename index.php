@@ -1,189 +1,225 @@
-<!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
+    <!DOCTYPE html>
+    <!--
+    To change this license header, choose License Headers in Project Properties.
+    To change this template file, choose Tools | Templates
+    and open the template in the editor.
 -->
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <link rel="stylesheet" href="css/style.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.9.0/sweetalert2.css">
-        
-        <!-- Include a polyfill for ES6 Promises (optional) for IE11 and Android browser -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.9.0/sweetalert2.js"></script> 
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script> 
-        <title></title>
-    </head>
-    <body>
-      <div class="container">
-        <form id="contact" action="index.php"  method="post">
-                <h3>Crear usuario</h3>                
-                <fieldset>
-                    <input placeholder="Nombres" type="text" name="firsName" tabindex="1" required autofocus>
-                </fieldset>
-                <fieldset>
-                    <input placeholder="Apellidos" type="text" name="lastName" tabindex="2" required autofocus>
-                </fieldset>
-                <fieldset>
-                    <input placeholder="Correo electronico" type="email" name="email" tabindex="3" required>
-                </fieldset>
-                <fieldset>
-                    <input placeholder="Telefono (Opcional)" type="tel" name="tel" tabindex="4" >
-                </fieldset>
-                <fieldset>
-                    <input placeholder="Contraseña" type="password" name="password" tabindex="5" required>
-                </fieldset>
-                <fieldset>
-                    <input value="Crear usuario" type="submit"  name="accion" id="contact-submit" data-submit="...Sending" >
-                </fieldset>                
-            </form>
-      </div><!-- Crear usuario-->
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.9.0/sweetalert2.css">
 
-      <div class="container">  
-            <form id="contact" action="index.php" method="post">
-                <h3>Eliminar usuario</h3>  
-                <fieldset>
-                    <input placeholder="Correo electronico" type="email" name="email" tabindex="6" required>
-                </fieldset>                
-                <fieldset>
-                    <input placeholder="Contraseña" type="password" name="password" tabindex="7" required>
-                </fieldset> 
-                <fieldset>
-                    <input value="Eliminar usuario" type="submit"  name="accion" id="contact-submit" data-submit="...Sending" >
-                </fieldset>                
-            </form>
-        </div><!-- eliminar usuario-->
 
-        <div class="container">  
-            <form id="contact" action="index.php" method="post" target="TheWindow">
-                <h3>Crear huella vocal</h3>   
+    <!-- Include a polyfill for ES6 Promises (optional) for IE11 and Android browser -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 
-                <fieldset>
-                    <input placeholder="Correo electronico" type="email" name="email" tabindex="8" required>
-                </fieldset>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.9.0/sweetalert2.js"></script> 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script> 
+    <title></title>
+</head>
+<body>
+  <div class="container">
+    <form id="contact" action="index.php"  method="post">
+        <h3>Crear usuario</h3>                
+        <fieldset>
+            <input placeholder="Nombres" type="text" name="firsName" tabindex="1" required autofocus>
+        </fieldset>
+        <fieldset>
+            <input placeholder="Apellidos" type="text" name="lastName" tabindex="2" required autofocus>
+        </fieldset>
+        <fieldset>
+            <input placeholder="Correo electronico" type="email" name="email" tabindex="3" required>
+        </fieldset>
+        <fieldset>
+            <input placeholder="Telefono (Opcional)" type="tel" name="tel" tabindex="4" >
+        </fieldset>
+        <fieldset>
+            <input placeholder="Contraseña" type="password" name="password" tabindex="5" required>
+        </fieldset>
+        <fieldset>
+            <input value="Crear usuario" type="submit"  name="accion" id="contact-submit" data-submit="...Sending" >
+        </fieldset>                
+    </form>
+</div><!-- Crear usuario-->
 
-                <fieldset>
-                    <input placeholder="Contraseña" type="password" name="password" tabindex="9" required>
-                </fieldset> 
+<div class="container">  
+    <form id="contact" action="index.php" method="post">
+        <h3>Eliminar usuario</h3>  
+        <fieldset>
+            <input placeholder="Correo electronico" type="email" name="email" tabindex="6" required>
+        </fieldset>                
+        <fieldset>
+            <input placeholder="Contraseña" type="password" name="password" tabindex="7" required>
+        </fieldset> 
+        <fieldset>
+            <input value="Eliminar usuario" type="submit"  name="accion" id="contact-submit" data-submit="...Sending" >
+        </fieldset>                
+    </form>
+</div><!-- eliminar usuario-->
 
-                <fieldset>
-                    <input placeholder="Tu voz" type="file" name="file" tabindex="10" required autofocus>
-                </fieldset> 
+<div class="container">  
+    <form id="contact" action="index.php" method="post">
+        <h3>Crear huella vocal</h3>   
 
-                <fieldset>
-                    Idioma
-                    <select name="idioma">
-                        <option>es-CO</option>
-                        <option>en-US</option>
-                    </select>   
-                </fieldset>
-                
-                <fieldset>
-                    <input value="Crear huella" type="submit"  name="accion" id="contact-submit" data-submit="...Sending" >
-                </fieldset>  
-          </form>
-        </div><!-- crear huella vocal-->
+        <fieldset>
+            <input placeholder="Correo electronico" type="email" name="email" tabindex="8" required>
+        </fieldset>
 
-        <div class="container">  
-            <form id="contact" action="index.php" method="post">
-                <h3>Autenticar</h3>   
+        <fieldset>
+            <input placeholder="Contraseña" type="password" name="password" tabindex="9" required>
+        </fieldset> 
 
-                <fieldset>
-                    <input placeholder="Correo electronico" type="email" name="email" tabindex="11" required>
-                </fieldset>
-                <fieldset>
-                    <input placeholder="Contraseña" type="password" name="password" tabindex="12" required>
-                </fieldset> 
+        <fieldset>
+            <button value="" name="descarga" onclick="Grabar(this);">Record</button>
+        </fieldset> 
 
-                <fieldset>
-                    <input placeholder="Tu voz" type="file" name="file" tabindex="13" required autofocus>
-                </fieldset>
-                <fieldset>
-                    <select name="idioma">
-                        <option>es-CO</option>
-                        <option>en-US</option>
-                    </select>                                         
-                    <fieldset>
-                        <input value="autenticacion" type="submit"  name="accion" id="contact-submit" data-submit="...Sending" >
-                    </fieldset>  
+        <fieldset>
+            Idioma
+            <select name="idioma">
+                <option>es-CO</option>
+                <option>en-US</option>
+            </select>   
+        </fieldset>
 
-            </form>
-        </div><!-- autenticar-->
+        <fieldset>
+            <input value="Crear huella" type="submit"  name="accion" id="contact-submit" data-submit="...Sending" >
+        </fieldset>  
+    </form>
+</div><!-- crear huella vocal-->
 
-    </body>
+<div class="container">
+<form id="contact" action="action.php" method="post">
+    <fieldset>
+            <input value="Imprimir" type="submit"  name="accion" id="contact-submit" data-submit="...Sending" >
+        </fieldset>
+</form>
+</div>
+
+<div class="container">  
+    <form id="contact" action="index.php" method="post">
+        <h3>Autenticar</h3>   
+
+        <fieldset>
+            <input placeholder="Correo electronico" type="email" name="email" tabindex="11" required>
+        </fieldset>
+        <fieldset>
+            <input placeholder="Contraseña" type="password" name="password" tabindex="12" required>
+        </fieldset> 
+
+        <fieldset>
+            <input placeholder="Tu voz" type="file" name="file" tabindex="13" required autofocus>
+        </fieldset>
+        <fieldset>
+            <select name="idioma">
+                <option>es-CO</option>
+                <option>en-US</option>
+            </select>                                         
+            <fieldset>
+                <input value="autenticacion" type="submit"  name="accion" id="contact-submit" data-submit="...Sending" >
+            </fieldset>  
+
+        </form>
+    </div><!-- autenticar-->
+
+
+    
+    <script src="js/lib/recorder.js"></script>
+    <script src="js/recordLive.js"></script>
+    
+    
+
+</body>
 </html>
 
-    <?php
-        require_once("VoiceIt.php");
-        $myVoiceIt = new VoiceIt("ae6e25717c44451280823f8615ed454a");
+<?php
+require_once("VoiceIt.php");
+$myVoiceIt = new VoiceIt("ae6e25717c44451280823f8615ed454a");
 
-        $accion = $_POST["accion"];
+$accion = $_POST["accion"];
 
 
-        if ($accion === "Crear usuario") {
+if ($accion === "Crear usuario") {
 
-            $email = $_POST["email"];
-            $password = $_POST["password"];
-            $firsName = $_POST["firsName"];
-            $lastName = $_POST["lastName"];
-            $tel = $_POST["tel"];
+    $email = $_POST["email"];
+    $password = $_POST["password"];
+    $firsName = $_POST["firsName"];
+    $lastName = $_POST["lastName"];
+    $tel = $_POST["tel"];
 
-            $response = $myVoiceIt->createUser($email, $password, $firsName, $lastName, $tel, "", "");
+    $response = $myVoiceIt->createUser($email, $password, $firsName, $lastName, $tel, "", "");
 
-            $text = guardarJson($response);
+    $text = guardarJson($response);
 
-            if ($text["Result"] == "Success") {
-                echo "<script>swal({title: 'Correcto',text: 'Registro exitoso', type: 'success',confirmButtonText: 'Cool'});</script>";
-            } else {
-                $r = $text["Result"];
-                echo "<script>swal({ title: 'Error!',  text: ".$r.",  type: 'error',  confirmButtonText: 'Cool'})</script>";
-            }
-        }
+    if ($text["Result"] == "Success") {
+        echo "<script>swal({title: 'Correcto',text: 'Registro exitoso', type: 'success',confirmButtonText: 'Cool'});</script>";
+    } else {
+        $r = $text["Result"];
+        echo "<script>swal({ title: 'Error!',  text: ".$r.",  type: 'error',  confirmButtonText: 'Cool'})</script>";
+    }
+}
 
-        if ($accion === "Eliminar usuario") {
+if ($accion === "Eliminar usuario") {
 
-            $email = $_POST["email"];
-            $password = $_POST["password"];
+    $email = $_POST["email"];
+    $password = $_POST["password"];
 
-            $response = $myVoiceIt->deleteUser("$email", "$password");
+    $response = $myVoiceIt->deleteUser("$email", "$password");
 
-            $text = guardarJson($response);
-            
-            if ($text["Result"] == "Success") {
-                echo "<script>swal({title: 'Correcto',text: 'Autenticacion exitosa', type: 'success',confirmButtonText: 'Cool'});</script>";
-            } else {
-                $r = $text["Result"];
-                echo "<script>swal({ title: 'Error!',  text: '$r',  type: 'error',  confirmButtonText: 'Cool'})</script>";
-            }
-        }
+    $text = guardarJson($response);
 
-        if ($accion === "autenticacion") {
-            $email = $_POST["email"];
-            $password = $_POST["password"];
-            $file = $_POST["file"];
-            $idioma = $_POST["idioma"];    
-            $response = $myVoiceIt->authentication("$email", "$password", "$file", "85", "$idioma");
+    if ($text["Result"] == "Success") {
+        echo "<script>swal({title: 'Correcto',text: 'Autenticacion exitosa', type: 'success',confirmButtonText: 'Cool'});</script>";
+    } else {
+        $r = $text["Result"];
+        echo "<script>swal({ title: 'Error!',  text: '$r',  type: 'error',  confirmButtonText: 'Cool'})</script>";
+    }
+}
 
-            $text = guardarJson($response);
+if ($accion === "Imprimir") {
+    
+    
+}
 
-            if ($text["Result"] == "Success") {
-                echo "<script>swal({title: 'Correcto',text: 'Autenticacion exitosa', type: 'success',confirmButtonText: 'Cool'});</script>";
-            } else {
-                $r = $text["Result"];
-                echo "<script>swal({ title: 'Error!',  text: '$r',  type: 'error',  confirmButtonText: 'Cool'})</script>";
-            }
-        }
 
-        function guardarJson($response) {
-            $file = 'datos.json';
-            file_put_contents($file, $response);
+if ($accion === "Crear huella") {
 
-            $data = file_get_contents("datos.json");
-            $text = json_decode($data, true);
+    $email = $_POST["email"];
+    $password = $_POST["password"];
+    $url = $_POST["descarga"];
+    $idioma = $_POST["idioma"];
 
-            return $text;
-        }
+    echo "<script>alert('$url')</script>";
+    echo "$url";
+    
+}
 
-        
-        ?>
+if ($accion === "autenticacion") {
+    $email = $_POST["email"];
+    $password = $_POST["password"];
+    $file = $_POST["file"];
+    $idioma = $_POST["idioma"];    
+    $response = $myVoiceIt->authentication("$email", "$password", "$file", "85", "$idioma");
+
+    $text = guardarJson($response);
+
+    if ($text["Result"] == "Success") {
+        echo "<script>swal({title: 'Correcto',text: 'Autenticacion exitosa', type: 'success',confirmButtonText: 'Cool'});</script>";
+    } else {
+        $r = $text["Result"];
+        echo "<script>swal({ title: 'Error!',  text: '$r',  type: 'error',  confirmButtonText: 'Cool'})</script>";
+    }
+}
+
+function guardarJson($response) {
+    $file = 'datos.json';
+    file_put_contents($file, $response);
+
+    $data = file_get_contents("datos.json");
+    $text = json_decode($data, true);
+
+    return $text;
+}
+
+
+?>
