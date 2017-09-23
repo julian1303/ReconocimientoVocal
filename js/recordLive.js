@@ -6,6 +6,8 @@ var audio_context,
 
 var UrlRetornada;
 var LinkDescarga;
+var resultA;
+var UserId;
 
 function startUserMedia(stream) {
   var input = audio_context.createMediaStreamSource(stream);
@@ -40,14 +42,19 @@ function Grabar(button){
 
   setTimeout(function(){
     button.value=LinkDescarga;
+    UserId = document.getElementById("correo").value;
+    downloadURI(LinkDescarga,UserId+".wav");
   },3500);
   
 }
 
+
+
 function blobToDataURL(blob) {
     var a = new FileReader();
-    a.onload = function(e) {callback(e.target.result);}
+    a.onload = function(e) {}
     a.readAsDataURL(blob);
+    resultA = a;
 }
 
 function ObtenerURL(){
@@ -94,6 +101,18 @@ function handleWAV(blob) {
 
   var url = URL.createObjectURL(blob);
 
+  // `blobURL` : `"blob:http://example.com/7737-4454545-545445"`
+fetch(url).then(response => response.blob())
+.then(blob => { 
+  const fd = new FormData();
+  fd.append("linkDescarga", blob, "wav"); // where `.ext` matches file `MIME` type  
+  return fetch("/voiceIt/action.php/linkDescarga.wav", {method:"POST", body:fd})
+})
+.then(response => response.ok)
+.then(res => console.log(res))
+.catch(err => console.log(err));
+
+  blobToDataURL(blob);
   LinkDescarga=url;
   var toggler;
   

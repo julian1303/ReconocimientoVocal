@@ -71,8 +71,11 @@
         </fieldset> 
 
         <fieldset>
-            <button id="linkWav" value="" name="descarga" onclick="Grabar(this);">Record</button>
+            <button id="linkWav" value="" name="descarga" onclick="Grabar(this);" required data-submit="...Sending">Record</button>
         </fieldset> 
+        <fieldset>
+            <input placeholder="Tu voz" type="file" name="file" tabindex="1" required autofocus>
+        </fieldset>
 
         <fieldset>
             Idioma
@@ -83,7 +86,8 @@
         </fieldset>
 
         <fieldset>
-            <button id="CrearHuellaB" value="Crear Huella" type="button" onclick="loadLog()">Crear huella</button>
+            <!--<button id="CrearHuellaB" value="Crear Huella" type="button" onclick="loadLog()" data-submit="...Sending">Crear huella</button>-->
+            <input value="Crear huella" type="submit"  name="accion" id="contact-submit" data-submit="...Sending" >
         </fieldset>  
     </form>
 </div><!-- crear huella vocal-->
@@ -205,11 +209,20 @@ if ($accion === "Crear huella") {
 
     $email = $_POST["email"];
     $password = $_POST["password"];
-    $url = $_POST["descarga"];
+    $file = $_POST["file"];
     $idioma = $_POST["idioma"];
 
-    echo "<script>alert('$url')</script>";
-    echo "$url";
+
+    $response = $myVoiceIt->createEnrollment("$email", "$password", "$file", "$idioma");
+   
+    $text = guardarJson($response);
+
+    if ($text["Result"] == "Success") {
+        echo "<script>swal({title: 'Correcto',text: 'Creacion de huella exitosa', type: 'success',confirmButtonText: 'Cool'});</script>";
+    } else {
+        $r = $text["Result"];
+        echo "<script>swal({ title: 'Error!',  text: '$r',  type: 'error',  confirmButtonText: 'Cool'})</script>";
+    }
     
 }
 
