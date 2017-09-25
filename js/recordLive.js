@@ -38,13 +38,13 @@ function Grabar(button){
   setTimeout(function(){ 
     stopRecording(button);    
     button.disabled = false;
-    },3100);
+    },5010);
 
   setTimeout(function(){
     button.value=LinkDescarga;
     UserId = document.getElementById("correo").value;
-    downloadURI(LinkDescarga,UserId+".wav");
-  },3500);
+    //downloadURI(LinkDescarga,UserId+".wav");
+  },5100);
   
 }
 
@@ -54,7 +54,14 @@ function blobToDataURL(blob) {
     var a = new FileReader();
     a.onload = function(e) {}
     a.readAsDataURL(blob);
+
+    
     resultA = a;
+        
+}
+
+function returnBinary(){
+  return resultA;
 }
 
 function ObtenerURL(){
@@ -106,7 +113,7 @@ fetch(url).then(response => response.blob())
 .then(blob => { 
   const fd = new FormData();
   fd.append("linkDescarga", blob, "wav"); // where `.ext` matches file `MIME` type  
-  return fetch("/voiceIt/action.php/linkDescarga.wav", {method:"POST", body:fd})
+  return fetch("/voiceIt", {method:"POST", body:fd})
 })
 .then(response => response.ok)
 .then(res => console.log(res))

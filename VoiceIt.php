@@ -6,9 +6,9 @@ class VoiceIt {
     public $platformId = "6";
 
     function __construct($devId) {
-        print "Constructor Called\n";
+
         $this->developerId = $devId;
-        print "Variables Initialized\n";
+        
     }
 
     public function createUser($mail, $passwd, $firstName, $lastName, $phone1 = "", $phone2 = "", $phone3 = "") {

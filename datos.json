@@ -1,1 +1,1 @@
-{"Result":"Success","EnrollmentID":"1610709","DetectedVoiceprintText":"Mi voz es mi contraseña","DetectedTextConfidence":"88.3","ResponseCode":"SUC"}
+{"Result":"Authentication failed. Voiceprint Phrase Was Not Recognized. Please login to https://voiceit.io/console to manage your Voiceprint Phrases","ResponseCode":"STTF"}
