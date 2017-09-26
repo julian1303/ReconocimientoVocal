@@ -1,1 +1,1 @@
-{"Result":"Authentication failed. Voiceprint Phrase Was Not Recognized. Please login to https://voiceit.io/console to manage your Voiceprint Phrases","ResponseCode":"STTF"}
+{"Result":"UserId does not meet requirements, please ensure it is an alphanumeric string between 5 - 36 characters","ResponseCode":"IUID"}
