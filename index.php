@@ -292,7 +292,7 @@
         if ($text["Result"] == "Success") {
             echo "<script>swal({title: 'Correcto',text: 'Creacion de huella exitosa, frase detectada $r2 con una confidencialidad de $r3', type: 'success',confirmButtonText: 'Cool'});</script>";
         } else {
-            echo "<script>swal({ title: 'Error!',  text: '$r hola',  type: 'error',  confirmButtonText: 'Cool'})</script>";
+            echo "<script>swal({ title: 'Error!',  text: '$r',  type: 'error',  confirmButtonText: 'Cool'})</script>";
         }
 
      }
