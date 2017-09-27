@@ -8,6 +8,7 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="css/style.css">
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.9.0/sweetalert2.css">
 
 
@@ -116,7 +117,7 @@
                 <input placeholder="Contraseña" type="password" name="password" tabindex="12" required>
             </fieldset>                   
             <fieldset>
-                <select name="idioma">
+                <select id="selector" value="Deseleccionado" name="idioma">
                     <option>es-CO</option>
                     <option>en-US</option>
                 </select>                                         
@@ -189,7 +190,10 @@
     <script>//Funcion que ejecuta el sweet
         function Grabar2(button){
             b=button;
-            swal({
+            var idioma = document.getElementById("selector").value;
+
+            if(idioma=="es-CO"){
+                 swal({
               title: 'Di: Mi voz es mi contraseña!',              
               text: 'Se cerrará automáticamente en 5 segundos',
               timer: 5000,
@@ -210,6 +214,31 @@
               }
             }
             )
+            }
+            else{
+                 swal({
+              title: 'Say: My voice is my password!',              
+              text: 'Will automatically close in 5 seconds',
+              timer: 5000,
+              onOpen: function () {
+                Grabar(b);
+                swal.showLoading();
+                
+                }
+            }).then(
+                function () {
+                    
+                },
+              // handling the promise rejection
+              function (dismiss) {
+
+                if (dismiss === 'timer') {
+                  console.log('I was closed by the timer')
+              }
+            }
+            )
+            }
+           
         }
         </script>
 
