@@ -3,6 +3,7 @@
     <img src="http://materializecss.com/res/materialize.svg" width="150">
   </a>
 
+<<<<<<< HEAD
   <h3 align="center">MaterializeCSS</h3>
 
   <p align="center">
@@ -88,3 +89,7 @@ Check out the [CONTRIBUTING document](CONTRIBUTING.md) in the root of the reposi
 
 ## Copyright and license
 Code copyright 2017 Materialize. Code released under the MIT license.
+=======
+Proyecto de investigacion de biometria de voz
+Estilos con MaterializeCSS
+>>>>>>> AgregadosEstilos
