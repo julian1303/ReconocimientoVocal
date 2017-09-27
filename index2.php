@@ -54,7 +54,7 @@
                   </div>
                   <br>
                   <div class="center-align">
-                    <input class="waves-effect waves-light btn #1565c0 blue darken-3 col s12" name="accion" type="submit" id="btn-submit" value="Crear usuario">
+                    <input class=" waves-light btn #1565c0 blue darken-3 col s12" name="accion" type="submit" id="btn-submit" value="Crear usuario">
                   </div>
                 </div>
               </form>
@@ -84,7 +84,7 @@
                   </div>
                   <br>
                   <div class="center-align">
-                    <input class="waves-effect waves-light btn #1565c0 blue darken-3 col s12" type="submit" id="btn-submit" name="accion" value="Eliminar usuario">
+                    <input class=" waves-light btn #1565c0 blue darken-3 col s12" type="submit" id="btn-submit" name="accion" value="Eliminar usuario">
                   </div>
                 </div>
               </form>
@@ -129,7 +129,7 @@
                   </div>
                   <br>
                   <div class="center-align">
-                    <input class="waves-effect waves-light btn #1565c0 blue darken-3 col s12" onclick="loadBinary()" type="button" id="btn-submit" value="Enviar">
+                    <input class=" waves-light btn #1565c0 blue darken-3 col s12" onclick="loadBinary()" type="button" id="btn-submit" value="Enviar">
                   </div>
                 </div>
               </form>
@@ -174,7 +174,7 @@
                   </div>
                   <br>
                   <div class="center-align">
-                    <input class="waves-effect waves-light btn #1565c0 blue darken-3 col s12"  onclick="loadBinaryA()" type="button" id="btn-submit" value="Enviar">
+                    <input class=" waves-light btn #1565c0 blue darken-3 col s12"  onclick="loadBinaryA()" type="button" id="btn-submit" value="Enviar">
                   </div>
                 </div>
               </form>
