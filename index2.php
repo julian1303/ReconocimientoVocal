@@ -146,7 +146,7 @@
           <div class="card-content white-text">
              <h3 class="center-align ">Autenticar</h3>
             <div class="row">
-              <form id="myformA" class="col s10 offset-s1" action="index.php" method="post">
+              <form id="myformA" class="col s10 offset-s1" action="index2.php" method="post">
                 <div>
                   <div class="input-field">
                     <input class="validate" type="email" id="correo" name="email">
@@ -350,10 +350,10 @@
         $password = $_POST["password"];    
         $idioma = $_POST["idioma"];
 
-        echo "Ruta: ",$path,"<br>";
+        /*echo "Ruta: ",$path,"<br>";
         echo "Correo: ",$email, "<br>";
         echo "Contraseña: ",$password, "<br>";
-        echo "Idioma: ",$idioma, "<br>";
+        echo "Idioma: ",$idioma, "<br>";*/
 
         $response = $myVoiceIt->createEnrollment("$email", "$password", "$path", "$idioma");
 
@@ -361,9 +361,9 @@
 
         $text = guardarJson($response);
         $r = $text["Result"];
-        $r2 = $text["DetectedVoiceprintText"];
-        $r3 = $text["DetectedTextConfidence"];
-        if ($text["Result"] == "Success") {
+        if ($text["Result"] == "Success") {          
+            $r2 = $text["DetectedVoiceprintText"];
+            $r3 = $text["DetectedTextConfidence"];
             echo "<script>swal({title: 'Correcto',text: 'Creacion de huella exitosa, frase detectada $r2 con una confidencialidad de $r3', type: 'success',confirmButtonText: 'Cool'});</script>";
         } else {
             echo "<script>swal({ title: 'Error!',  text: '$r',  type: 'error',  confirmButtonText: 'Cool'})</script>";
@@ -387,8 +387,9 @@
 
         $text = guardarJson($response);
         $r = $text["Result"];
-        $r2 = $text["Confidence"];
         if ($text["ResponseCode"] == "SUC") {
+
+        $r2 = $text["Confidence"];
             echo "<script>swal({title: 'Correcto',text: 'Autenticacion exitosa con una confidencialidad del $r2 ', type: 'success',confirmButtonText: 'Cool'});</script>";
         } else {
             echo "<script>swal({ title: 'Error!',  text: '$r',  type: 'error',  confirmButtonText: 'Cool'})</script>";
