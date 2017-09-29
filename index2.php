@@ -62,8 +62,8 @@
           </div>
         </div>
       </div>
+      </div>
     </div>
-  </div>
   <div class="container picker__header"><!--Eliminar Usuario-->
     <div class="row">
       <div class="col s12 m12 l6 offset-l3">

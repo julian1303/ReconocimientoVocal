@@ -7,8 +7,10 @@ var audio_context,
 var UrlRetornada;
 var LinkDescarga=[];
 var result=[];
+var resultA;
 var UserId;
 var count=0;
+var accion;
 
 function startUserMedia(stream) {
   var input = audio_context.createMediaStreamSource(stream);
@@ -34,6 +36,7 @@ function changeVolume(value) {
 
 function Grabar(button){
   button.disabled = true;
+  accion = button.value;
   startRecording(button);
 
   setTimeout(function(){ 
@@ -56,9 +59,18 @@ function blobToDataURL(blob) {
     var a = new FileReader();
     a.onload = function(e) {}
     a.readAsDataURL(blob);
+
+    if(accion="autenticar"){
+      resultA=a;
+    }
+    else{
+      result[count] = a;
+    }
     
-    result[count] = a;
         
+}
+function returnBinary(){
+  return resultA;
 }
 
 function returnBinary1(){

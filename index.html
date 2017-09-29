@@ -19,6 +19,7 @@
 </head>
 <!-- Modificaciones en los colores del active, linea 6074, icon 6392, checkbox 6601 & 6596, chulito 6727-->
 <body style="background-color: #e4e8ec" >
+
   <div class="container picker__header"><!--Crear usuario -->
     <div class="row">
       <div class="col s12 m12 l6 offset-l3">
@@ -26,35 +27,38 @@
           <div class="card-content white-text">
              <h3 class="center-align ">Crear Usuario</h3>
             <div class="row">
-              <form class="col s10 offset-s1" action="index2.php"  method="post">
+              <form id="FormCrearUsuario" class="col s10 offset-s1" action="index2.php"  method="post">
                 <div>
-                  <div class="input-field">
-                    
-                    <input class="validate" name="firsName" type="text" id="Nombre"   >
-                    <label for="Nombre">Nombre</label>
+                  <div class="input-field" >                    
+                    <input class="validate" name="firsName" type="text" id="Nombre"  required >
+                    <label for="Nombre" required>Nombre</label>
+                  </div>
+                  <div class="input-field">                    
+                    <input id="Apellido" name="lastName" type="text" class="validate">
+                    <label for="Apellido">Apellido</label>                    
                   </div>
                   <div class="input-field">
-                    <!--<input class="validate" placeholder="Apellido" type="text" id="correo" name="correo">-->
-                    <input id="last_name" name="lastName" type="text" class="validate">
-                    <label for="last_name">Apellido</label>                    
-                  </div>
-                  <div class="input-field">
-                    <input class="validate" name="email" type="email" id="Correo" name="pass">
+                    <input class="validate" name="email" type="email" id="correoCrearUsuario" name="pass" onblur="validarCorreo('correoCrearUsuario')">
                     <label for="Correo">Correo electronico</label>                    
                   </div>
                   <div class="input-field">
-                    <i class="material-icons prefix">phone</i>
-                    <input id="Telefono" name="tel" type="tel" class="validate">
-                    <label for="Telefono">Telefono</label>                    
+                    <i class="material-icons prefix">lock</i>
+                    <input class="validate" name="password" type="password" id="CUContraseña" onblur="validarContraseña()" onfocus="validarContraseña()">   
+                    <label for="Contraseña">Contraseña</label>                 
                   </div>
                   <div class="input-field">
                     <i class="material-icons prefix">lock</i>
-                    <input class="validate" name="password" type="password" id="Contraseña">   
-                    <label for="Contraseña">Contraseña</label>                 
+                    <input class="validate" type="password" id="ConfirmarContraseña" onblur="validarContraseña()" onfocus="validarContraseña()">   
+                    <label for="Contraseña">Confirmar contraseña</label>                 
                   </div>
+                  <div class="input-field">
+                    <i class="material-icons prefix">phone</i>
+                    <input id="Telefono" name="tel" type="tel" class="validate" onkeydown="ValidateNumberOnly()">
+                    <label for="Telefono">Telefono</label>                    
+                  </div>                  
                   <br>
                   <div class="center-align">
-                    <input class=" waves-light btn #1565c0 blue darken-3 col s12" name="accion" type="submit" id="btn-submit" value="Crear usuario">
+                    <input class=" waves-light btn #1565c0 blue darken-3 col s12" type="button" name="accion" onclick="validarFormCrearUsuario()" id="btn-submit" value="Crear usuario">
                   </div>
                 </div>
               </form>
@@ -63,7 +67,8 @@
         </div>
       </div>
     </div>
-  </div>
+    </div>
+
   <div class="container picker__header"><!--Eliminar Usuario-->
     <div class="row">
       <div class="col s12 m12 l6 offset-l3">
@@ -74,17 +79,17 @@
               <form class="col s10 offset-s1" action="index2.php"  method="post">
                 <div>
                   <div class="input-field">
-                    <input class="validate" type="email" id="Correo" name="email">
+                    <input class="validate" type="email" id="CorreoEliminarUsuario" name="email" onblur="validarCorreo('CorreoEliminarUsuario')">
                     <label for="Correo">Correo electronico</label>                    
                   </div>
                   <div class="input-field">
                     <i class="material-icons prefix">lock</i>
-                    <input class="validate"  type="password" id="Contraseña" name="password">   
+                    <input class="validate"  type="password" id="ContraseñaEliminarUsuario" name="password">   
                     <label for="Contraseña">Contraseña</label>
                   </div>
                   <br>
                   <div class="center-align">
-                    <input class=" waves-light btn #1565c0 blue darken-3 col s12" type="submit" id="btn-submit" name="accion" value="Eliminar usuario">
+                    <input class=" waves-light btn #1565c0 blue darken-3 col s12" type="button" onclick="validarFormEliminarUsuario()" id="btn-submit" name="accion" value="Eliminar usuario">
                   </div>
                 </div>
               </form>
@@ -94,6 +99,7 @@
       </div>
     </div>    
     </div>
+  
   <div class="container picker__header"><!--Crear huella --> 
     <div class="row">
       <div class="col s12 m12 l6 offset-l3">
@@ -103,15 +109,18 @@
             <div class="row">
               <form id="myform" class="col s10 offset-s1" action="index2.php" method="post">
                 <div>
+
                   <div class="input-field">
-                    <input class="validate" type="email" id="correo" name="email">
+                    <input class="validate" type="email" id="correoCrearHuella" name="email" onblur="validarCorreo('correoCrearHuella')">
                     <label for="correo">Correo electronico</label>                    
-                  </div>                  
+                  </div> 
+
                   <div class="input-field">
                     <i class="material-icons prefix">lock</i>
-                    <input class="validate"  type="password" id="Contraseña" name="password">   
+                    <input class="validate"  type="password" id="ContraseñaCrearHuella" name="password">   
                     <label for="Contraseña">Contraseña</label>                 
                   </div>
+
                   <div class="input-field grey-text ">
                      <i class="material-icons prefix  white-text">g_translate</i>
                     <select id="selectorC" name="idioma">        
@@ -121,19 +130,24 @@
                       <option value="en-US">Ingles</option>
                     </select>
                   </div>
+
                   <br>
+
                   <div class="center-align">
-                    <button  class="btn btn-floating waves-light white" type="button" value="" onclick="Grabar2(this);" required ><i class="material-icons left black-text">mic</i></button><label><h5>Grabar</h5></label>
+                    <button  class="btn btn-floating waves-light white" type="button" value="crearHuella" onclick="Grabar2(this);" required ><i class="material-icons left black-text">mic</i></button><label><h5>Grabar</h5></label>
 
                     <input id="mydata1" type="hidden" name="mydata1" value=""/>
                     <input id="mydata2" type="hidden" name="mydata2" value=""/>
                     <input id="mydata3" type="hidden" name="mydata3" value=""/>
                     <input value="Crear huella" type="hidden"  name="accion"  >
                   </div>
+
                   <br>
+
                   <div class="center-align">
-                    <input class=" waves-light btn #1565c0 blue darken-3 col s12" onclick="loadBinary()" type="button" id="btn-submit" value="Enviar">
+                    <input class=" waves-light btn #1565c0 blue darken-3 col s12" onclick="validarFormCrearHuella()" type="button" id="btn-submit" value="Enviar">
                   </div>
+
                 </div>
               </form>
             </div>
@@ -142,6 +156,7 @@
       </div>
     </div>
     </div>
+  
   <div class="container picker__header"><!--Autenticar --> 
     <div class="row">
       <div class="col s12 m12 l6 offset-l3">
@@ -152,12 +167,12 @@
               <form id="myformA" class="col s10 offset-s1" action="index2.php" method="post">
                 <div>
                   <div class="input-field">
-                    <input class="validate" type="email" id="correo" name="email">
-                    <label for="correo">Correo electronico</label>                    
+                    <input class="validate" name="email" type="email" id="CorreoAutenticar" name="pass" onblur="validarCorreo('CorreoAutenticar')">
+                    <label for="Correo">Correo electronico</label>                      
                   </div>                  
                   <div class="input-field">
                     <i class="material-icons prefix">lock</i>
-                    <input class="validate"  type="password" id="Contraseña" name="password">   
+                    <input class="validate"  type="password" id="ContraseñaAutenticar" name="password">   
                     <label for="Contraseña">Contraseña</label>                 
                   </div>
                   <div class="input-field grey-text ">
@@ -172,7 +187,7 @@
                   <br>
                   <div class="center-align">
                     
-                    <button  class="btn btn-floating waves-light white" type="button" value="" onclick="Grabar2(this);" required ><i class="material-icons left black-text">mic</i></button><label><h5>Grabar</h5></label>
+                    <button  class="btn btn-floating waves-light white" type="button" value="autenticar" onclick="Grabar2(this);" required ><i class="material-icons left black-text">mic</i></button><label><h5>Grabar</h5></label>
 
                     <input id="mydataA1" type="hidden" name="mydataA1" value=""/>
                     <input id="mydataA2" type="hidden" name="mydataA2" value=""/>
@@ -181,7 +196,7 @@
                   </div>
                   <br>
                   <div class="center-align">
-                    <input class=" waves-light btn #1565c0 blue darken-3 col s12"  onclick="loadBinaryA()" type="button" id="btn-submit" value="Enviar">
+                    <input class=" waves-light btn #1565c0 blue darken-3 col s12"  onclick="validarFormAutenticar()" type="button" id="btn-submit" value="Enviar">
                   </div>
                 </div>
               </form>
@@ -192,11 +207,195 @@
     </div>
     </div>
   
+  <script>//Validaciones
 
-  <script>//Carga del binaryData para crear huella
-        function loadBinary(){
+        function validarContraseña(){
+          var Contra1 = document.getElementById('CUContraseña').value;
+          var Contra2 = document.getElementById('ConfirmarContraseña').value;
+
+          if (Contra1 != Contra2){        
+            document.getElementById('CUContraseña').className="validate invalid";
+            document.getElementById('ConfirmarContraseña').className="validate invalid";
+          }
+          else{
+            document.getElementById('CUContraseña').className="validate valid";
+            document.getElementById('ConfirmarContraseña').className="validate valid";
+          }
+        }
+
+        function validarCorreo(e){
+          var id = e;
+          var correo = document.getElementById(id).value;
+          
+          expr = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+
+          if ( !expr.test(correo) ){
+            document.getElementById(id).className="validate invalid";
+          }      
+          else{
+            document.getElementById(id).className="validate valid";
+          }
+        }
+
+        function ValidateNumberOnly(){
+          if ((event.keyCode < 48 || event.keyCode > 57)){
+            if(event.keyCode!=8){
+              event.returnValue = false;
+            }
+          }
+        }
+
+        function validarFormCrearUsuario(){
+
+            var validateStateContraseña = document.getElementById('CUContraseña').className;
+            var validateStateCContraseña = document.getElementById('ConfirmarContraseña').className;
+            var validateStateCorreo = document.getElementById('correoCrearUsuario').className;
+
+            if(document.getElementById('Nombre').value!="" && document.getElementById('Apellido').value!="" && document.getElementById('correoCrearUsuario').value!="" && document.getElementById('CUContraseña').value!="" && document.getElementById('ConfirmarContraseña').value!="" && document.getElementById('Telefono').value!=""){
+
+              if(validateStateContraseña!="validate invalid" &&  validateStateCContraseña!="validate invalid"){
+                  if(validateStateCorreo != "validate invalid"){
+                    document.getElementById('FormCrearUsuario').submit();
+                  }
+                  else{
+                    swal({ title: 'Error!',  html: 'El correo debe tener el siguente formato <br> <b>xxxxxx@xxxx.com</b>',  type: 'error',  confirmButtonText: 'OK'})
+                  }
+              }
+              else{
+                swal({ title: 'Error!',  text: 'La contraseña no coincide',  type: 'error',  confirmButtonText: 'OK'})
+              }
+
+
+            }
+            else{
+                swal({ title: 'Error!',  text: 'Debe ingresar todos los campos',  type: 'error',  confirmButtonText: 'OK'})
+            }
+        }
+
+        function validarFormEliminarUsuario(){
+
+            var validateStateContraseña = document.getElementById('ContraseñaEliminarUsuario').className;
+            var validateStateCorreo = document.getElementById('CorreoEliminarUsuario').className;
+
+            if(document.getElementById('CorreoEliminarUsuario').value!="" && document.getElementById('ContraseñaEliminarUsuario').value!=""){
+
+              if(validateStateContraseña!="validate invalid"){
+                  if(validateStateCorreo != "validate invalid"){
+                    document.getElementById('FormCrearUsuario').submit();
+                  }
+                  else{
+                    swal({ title: 'Error!',  html: 'El correo debe tener el siguente formato <br> <b>xxxxxx@xxxx.com</b>',  type: 'error',  confirmButtonText: 'OK'})
+                  }
+              }
+              else{
+                swal({ title: 'Error!',  text: 'La contraseña no coincide',  type: 'error',  confirmButtonText: 'OK'})
+              }
+
+
+            }
+            else{
+                swal({ title: 'Error!',  text: 'Debe ingresar todos los campos',  type: 'error',  confirmButtonText: 'OK'})
+            }
+        }
+
+         function validarFormCrearHuella(){
+
+            var validateStateContraseña = document.getElementById('ContraseñaCrearHuella').className;
+            var validateStateCorreo = document.getElementById('correoCrearHuella').className;
+            var idioma = document.getElementById('selectorC').value;
+
+
+            if(document.getElementById('correoCrearHuella').value!="" && document.getElementById('ContraseñaCrearHuella').value!="" ){
+              
+              if(document.getElementById('selectorC').value!=""){
+
+                if(validateStateCorreo != "validate invalid"){
+                      loadBinary(idioma);
+                }
+                else{
+                  swal({ title: 'Error!',  html: 'El correo debe tener el siguente formato <br> <b>xxxxxx@xxxx.com</b>',  type: 'error',  confirmButtonText: 'OK'})
+                }                
+              }
+              else{
+                swal({ title: 'Error!',  text: 'Por favor seleccione un idioma',  type: 'error',  confirmButtonText: 'OK'})
+              }
+              
+            }
+            else{
+                swal({ title: 'Error!',  text: 'Debe ingresar todos los campos',  type: 'error',  confirmButtonText: 'OK'})
+            }
+        }
+
+        function validarFormAutenticar(){
+
+            var validateStateContraseña = document.getElementById('ContraseñaAutenticar').className;
+            var validateStateCorreo = document.getElementById('CorreoAutenticar').className;
+            var idioma = document.getElementById('selectorA').value;
+
+
+            if(document.getElementById('CorreoAutenticar').value!="" && document.getElementById('ContraseñaAutenticar').value!="" ){
+              
+              if(document.getElementById('selectorA').value!=""){
+                if(validateStateCorreo != "validate invalid"){
+                      loadBinaryA(idioma);
+                }
+                else{
+                  swal({ title: 'Error!',  html: 'El correo debe tener el siguente formato <br> <b>xxxxxx@xxxx.com</b>',  type: 'error',  confirmButtonText: 'OK'})
+                }
+              }
+              else{
+                swal({ title: 'Error!',  text: 'Por favor seleccione un idioma',  type: 'error',  confirmButtonText: 'OK'})
+              }
+              
+            }
+            else{
+                swal({ title: 'Error!',  text: 'Debe ingresar todos los campos',  type: 'error',  confirmButtonText: 'OK'})
+            }
+        }
+
+        function validarSeleccionIdioma(button){
+
+            
+            
+            if(button.value=="autenticar"){
+              
+              var res =document.getElementById('selectorA').value;
+              
+              if(document.getElementById('selectorA').value!=""){                
+                return true;
+              }
+              else{
+                swal({ title: 'Error!',  text: 'Por favor selecciona un idioma',  type: 'error',  confirmButtonText: 'OK'})
+                return false;
+              }
+            }
+            else{
+              
+              if(document.getElementById('selectorC').value!=""){
+                return true;
+              }
+              else{
+                swal({ title: 'Error!',  text: 'Por favor seleccion un idioma',  type: 'error',  confirmButtonText: 'OK'})
+                return false;
+              }
+            }
+        }
+        
+      </script>
+
+      <script>//Carga del binaryData para crear huella
+        function loadBinary(e){
 
             var data_uri1 = returnBinary1();
+            if(data_uri1 == undefined){
+              if(e=="es-CO"){
+                swal({ title: 'Error!',  text: 'Debe realizar las grabaciones para la creación de la huella',  type: 'error',  confirmButtonText: 'OK'})
+              }
+              else{
+              swal({ title: 'Error!',  text: 'You must do the recordings for the creation of the fingerprint',  type: 'error',  confirmButtonText: 'OK'})
+              }
+            }
+            
             var data_uri2 = returnBinary2();
             var data_uri3 = returnBinary3();
 
@@ -215,12 +414,23 @@
             //swal({title: 'Correcto',text: raw_image_data, type: 'success',confirmButtonText: 'Cool'});
 
         }
-        </script>
+      </script>
 
-  <script>//Carga del binaryData para autenticar
-        function loadBinaryA(){
+      <script>//Carga del binaryData para autenticar
+        function loadBinaryA(e){
+           
 
             var data_uri = returnBinary();
+            
+            if(data_uri== undefined){
+
+              if(e=="es-CO"){
+                swal({ title: 'Error!',  text: 'Debe realizar la grabacion para poder autenticarse',  type: 'error',  confirmButtonText: 'OK'})
+              }
+              else{
+              swal({ title: 'Error!',  text: 'You must perform the recording to be able to authenticate',  type: 'error',  confirmButtonText: 'OK'})
+              }
+            }            
 
             var raw_image_data1 = data_uri[0].result.replace(/^data\:audio\/\w+\;base64\,/, '');
             var raw_image_data2 = data_uri[1].result.replace(/^data\:audio\/\w+\;base64\,/, '');
@@ -235,169 +445,177 @@
             //swal({title: 'Correcto',text: raw_image_data, type: 'success',confirmButtonText: 'Cool'});
 
         }
-        </script>
+      </script>
 
-  <script>//Funcion que ejecuta el sweet
-        function Grabar2(button){
+      <script>//Funcion que ejecuta la accion de grabar 3 veces
+        function Grabar2(button){          
+          
           b=button;
-          var idiomaC = document.getElementById("selectorC").value;
-          var idiomaA = document.getElementById("selectorA").value;
+          var seleccionIdioma = validarSeleccionIdioma(button);        
+          
 
-          if(idiomaC=="es-CO" || idiomaA=="es-CO"){
+          if(seleccionIdioma==true){
 
-              swal({          
-                html: "<i class='material-icons medium blue-text'>filter_1</i> <h5><b>Graba tu huella vocal</b></h5> Primera grabacion <br><br> Pulsa para grabar<br> Despues di: <b>Mi voz es mi contraseña</b>",
-                type: '',
-                showCancelButton: false,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: '<i class="material-icons left ">mic</i>',
-                cancelButtonText: 'No, cancel!',
-                confirmButtonClass: 'btn btn-floating waves-light black',                    
-                buttonsStyling: false,
-                allowOutsideClick: false
-              }).then(function () {
-                                  var sound = new Audio('sound.wav');
-                                  sound.play();
-                                  setTimeout(function(){
-                                    var audio = new Audio('beep.wav');
-                                    audio.play();
-                                    Grabar3(b);
-                                  },4000)
-
-                                  setTimeout(function(){
-                                    swal({
-                                      html: "<i class='material-icons medium blue-text'>filter_2</i> <h5><b>Graba tu huella vocal</b></h5> <br> Segunda grabacion <br><br> Pulsa para grabar<br> Despues di: <b>Mi voz es mi contraseña</b>",
-                                        type: '',
-                                        showCancelButton: false,
-                                        confirmButtonColor: '#3085d6',
-                                        cancelButtonColor: '#d33',
-                                        confirmButtonText: '<i class="material-icons left ">mic</i>',
-                                        cancelButtonText: 'No, cancel!',
-                                        confirmButtonClass: 'btn btn-floating waves-light black',                    
-                                        buttonsStyling: false,
-                                        allowOutsideClick: false
-                                    }).then(function () {
-                                                        sound.play();
-                                                        setTimeout(function(){
-                                                          var audio = new Audio('beep.wav');
-                                                          audio.play();
-                                                          Grabar3(b);
-                                                        },4000)
-
-                                                        setTimeout(function(){
-                                                        swal({
-                                                          html: "<i class='material-icons medium blue-text'>filter_3</i> <h5><b>Graba tu huella vocal</b></h5> <br> Tercera grabacion <br><br> Pulsa para grabar<br> Despues di: <b>Mi voz es mi contraseña</b>",
-                                                            type: '',
-                                                            showCancelButton: false,
-                                                            confirmButtonColor: '#3085d6',
-                                                            cancelButtonColor: '#d33',
-                                                            confirmButtonText: '<i class="material-icons left ">mic</i>',
-                                                            cancelButtonText: 'No, cancel!',
-                                                            confirmButtonClass: 'btn btn-floating waves-light black',                    
-                                                            buttonsStyling: false,
-                                                            allowOutsideClick: false
-                                                        }).then(function () {
-                                                                            sound.play();
-                                                                            setTimeout(function(){
-                                                                              var audio = new Audio('beep.wav');
-                                                                              audio.play();
-                                                                              Grabar3(b);
-                                                                            },4000)
-                                                        })
-                                                      },9200);
-                                      
-                                    })
-                                  },9200);
-
-
-
-              }, function (dismiss) {
-                // dismiss can be 'cancel', 'overlay',
-                // 'close', and 'timer'
-                if (dismiss === 'cancel') {
-                  swal(
-                    'Cancelled',
-                    'Your imaginary file is safe :)',
-                    'error'
-                  )
-                }
-              })
-
-          }else{
-
-              swal({          
-                html: "<i class='material-icons medium blue-text'>filter_1</i> <h5><b>Record your fingerprint</b></h5> First recording <br><br> Press to record<br> After Say: <b>Never forget tomorrow is a new day</b>",
-                type: '',
-                showCancelButton: false,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: '<i class="material-icons left ">mic</i>',
-                cancelButtonText: 'No, cancel!',
-                confirmButtonClass: 'btn btn-floating waves-light black',                    
-                buttonsStyling: false,
-                allowOutsideClick: false
-              }).then(function () {
-                                  Grabar3(b);
-                                  var audio = new Audio('beep.wav');
-                                  audio.play();
-                                  setTimeout(function(){
-                                    swal({
-                                      html: "<i class='material-icons medium blue-text'>filter_1</i> <h5><b>Record your fingerprint</b></h5> Second recording <br><br> Press to record<br> After Say: <b>Never forget tomorrow is a new day</b>",
-                                        type: '',
-                                        showCancelButton: false,
-                                        confirmButtonColor: '#3085d6',
-                                        cancelButtonColor: '#d33',
-                                        confirmButtonText: '<i class="material-icons left ">mic</i>',
-                                        cancelButtonText: 'No, cancel!',
-                                        confirmButtonClass: 'btn btn-floating waves-light black',                    
-                                        buttonsStyling: false,
-                                        allowOutsideClick: false
-                                    }).then(function () {
-                                                        Grabar3(b);
-                                                        audio.play();
-                                                        setTimeout(function(){
-                                                        swal({
-                                                          html: "<i class='material-icons medium blue-text'>filter_1</i> <h5><b>Record your fingerprint</b></h5> Third recording <br><br> Press to record<br> After Say: <b>Never forget tomorrow is a new day</b>",
-                                                            type: '',
-                                                            showCancelButton: false,
-                                                            confirmButtonColor: '#3085d6',
-                                                            cancelButtonColor: '#d33',
-                                                            confirmButtonText: '<i class="material-icons left ">mic</i>',
-                                                            cancelButtonText: 'No, cancel!',
-                                                            confirmButtonClass: 'btn btn-floating waves-light black',                    
-                                                            buttonsStyling: false,
-                                                            allowOutsideClick: false
-                                                        }).then(function () {
-                                                                            Grabar3(b);
-                                                                            audio.play();
-                                                        })
-                                                      },5200);
-                                      
-                                    })
-                                  },5200);
-
-
-
-              }, function (dismiss) {
-                // dismiss can be 'cancel', 'overlay',
-                // 'close', and 'timer'
-                if (dismiss === 'cancel') {
-                  swal(
-                    'Cancelled',
-                    'Your imaginary file is safe :)',
-                    'error'
-                  )
-                }
-              })
+                    var sound = new Audio('sound.wav');
+                    var beep = new Audio('beep.wav');
+                    var idiomaC = document.getElementById("selectorC").value;
+                    var idiomaA = document.getElementById("selectorA").value;
+          
+                    if(idiomaC=="es-CO" || idiomaA=="es-CO"){
+          
+                        swal({          
+                          html: "<i class='material-icons medium blue-text'>filter_1</i> <h5><b>Graba tu huella vocal</b></h5> Primera grabacion <br><br> Pulsa para grabar<br> Despues di: <b>Mi voz es mi contraseña</b>",
+                          type: '',
+                          showCancelButton: false,
+                          confirmButtonColor: '#3085d6',
+                          cancelButtonColor: '#d33',
+                          confirmButtonText: '<i class="material-icons left ">mic</i>',
+                          cancelButtonText: 'No, cancel!',
+                          confirmButtonClass: 'btn btn-floating waves-light black',                    
+                          buttonsStyling: false,
+                          allowOutsideClick: false
+                        }).then(function () {
+                                            
+                                            sound.play();
+                                            
+                                            setTimeout(function(){
+                                              beep.play();
+                                              Grabar3(b);                                 
+                                                                                 
+                                            },5000)
+          
+                                            setTimeout(function(){
+                                              swal({
+                                                html: "<i class='material-icons medium blue-text'>filter_2</i> <h5><b>Graba tu huella vocal</b></h5> <br> Segunda grabacion <br><br> Pulsa para grabar<br> Despues di: <b>Mi voz es mi contraseña</b>",
+                                                  type: '',
+                                                  showCancelButton: false,
+                                                  confirmButtonColor: '#3085d6',
+                                                  cancelButtonColor: '#d33',
+                                                  confirmButtonText: '<i class="material-icons left ">mic</i>',
+                                                  cancelButtonText: 'No, cancel!',
+                                                  confirmButtonClass: 'btn btn-floating waves-light black',                    
+                                                  buttonsStyling: false,
+                                                  allowOutsideClick: false
+                                              }).then(function () {
+                                                                  sound.play();
+                                                                  setTimeout(function(){
+                                                                    beep.play();                                                       
+                                                                    Grabar3(b);                                 
+                                                                                                        
+                                                                  },5000)
+          
+                                                                  setTimeout(function(){
+                                                                  swal({
+                                                                    html: "<i class='material-icons medium blue-text'>filter_3</i> <h5><b>Graba tu huella vocal</b></h5> <br> Tercera grabacion <br><br> Pulsa para grabar<br> Despues di: <b>Mi voz es mi contraseña</b>",
+                                                                      type: '',
+                                                                      showCancelButton: false,
+                                                                      confirmButtonColor: '#3085d6',
+                                                                      cancelButtonColor: '#d33',
+                                                                      confirmButtonText: '<i class="material-icons left ">mic</i>',
+                                                                      cancelButtonText: 'No, cancel!',
+                                                                      confirmButtonClass: 'btn btn-floating waves-light black',                    
+                                                                      buttonsStyling: false,
+                                                                      allowOutsideClick: false
+                                                                  }).then(function () {
+                                                                                      sound.play();
+                                                                                      setTimeout(function(){
+                                                                                        beep.play();
+                                                                                        Grabar3(b);                            
+                                                                                      },5000)
+                                                                  })
+                                                                },10600);
+                                                
+                                              })
+                                            },10600);
+          
+          
+          
+                        }, function (dismiss) {
+                          // dismiss can be 'cancel', 'overlay',
+                          // 'close', and 'timer'
+                          if (dismiss === 'cancel') {
+                            swal(
+                              'Cancelled',
+                              'Your imaginary file is safe :)',
+                              'error'
+                            )
+                          }
+                        })
+          
+                    }else{
+          
+                        swal({          
+                          html: "<i class='material-icons medium blue-text'>filter_1</i> <h5><b>Record your fingerprint</b></h5> First recording <br><br> Press to record<br> After Say: <b>Never forget tomorrow is a new day</b>",
+                          type: '',
+                          showCancelButton: false,
+                          confirmButtonColor: '#3085d6',
+                          cancelButtonColor: '#d33',
+                          confirmButtonText: '<i class="material-icons left ">mic</i>',
+                          cancelButtonText: 'No, cancel!',
+                          confirmButtonClass: 'btn btn-floating waves-light black',                    
+                          buttonsStyling: false,
+                          allowOutsideClick: false
+                        }).then(function () {
+                                            beep.play();
+                                            Grabar3(b);                                  
+                                            setTimeout(function(){
+                                              swal({
+                                                html: "<i class='material-icons medium blue-text'>filter_1</i> <h5><b>Record your fingerprint</b></h5> Second recording <br><br> Press to record<br> After Say: <b>Never forget tomorrow is a new day</b>",
+                                                  type: '',
+                                                  showCancelButton: false,
+                                                  confirmButtonColor: '#3085d6',
+                                                  cancelButtonColor: '#d33',
+                                                  confirmButtonText: '<i class="material-icons left ">mic</i>',
+                                                  cancelButtonText: 'No, cancel!',
+                                                  confirmButtonClass: 'btn btn-floating waves-light black',                    
+                                                  buttonsStyling: false,
+                                                  allowOutsideClick: false
+                                              }).then(function () {
+                                                                  beep.play();
+                                                                  Grabar3(b);                                                        
+                                                                  setTimeout(function(){
+                                                                  swal({
+                                                                    html: "<i class='material-icons medium blue-text'>filter_1</i> <h5><b>Record your fingerprint</b></h5> Third recording <br><br> Press to record<br> After Say: <b>Never forget tomorrow is a new day</b>",
+                                                                      type: '',
+                                                                      showCancelButton: false,
+                                                                      confirmButtonColor: '#3085d6',
+                                                                      cancelButtonColor: '#d33',
+                                                                      confirmButtonText: '<i class="material-icons left ">mic</i>',
+                                                                      cancelButtonText: 'No, cancel!',
+                                                                      confirmButtonClass: 'btn btn-floating waves-light black',                    
+                                                                      buttonsStyling: false,
+                                                                      allowOutsideClick: false
+                                                                  }).then(function () {
+                                                                                      beep.play();
+                                                                                      Grabar3(b);
+                                                                                      
+                                                                  })
+                                                                },5200);
+                                                
+                                              })
+                                            },5200);
+          
+          
+          
+                        }, function (dismiss) {
+                          // dismiss can be 'cancel', 'overlay',
+                          // 'close', and 'timer'
+                          if (dismiss === 'cancel') {
+                            swal(
+                              'Cancelled',
+                              'Your imaginary file is safe :)',
+                              'error'
+                            )
+                          }
+                        })
+                    }
           }
 
         
         }
-        </script>
+      </script>
 
-        <script>
-          
+      <script>//Funcion que ejecuta la accion de grabar en el javascript          
           function Grabar3(button){
 
             b=button;
@@ -412,7 +630,9 @@
                     timer: 5000,
                     allowOutsideClick: false,
                     onOpen: function () {
-                      Grabar(b);
+
+                      setTimeout(function(){
+                        Grabar(b);},540);                     
                       
                       }        
                   }).then(
@@ -453,8 +673,7 @@
                 )
               }
           }
-
-        </script>
+      </script>
 
   <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 
