@@ -5,9 +5,10 @@ var audio_context,
     currentEditedSoundIndex;
 
 var UrlRetornada;
-var LinkDescarga;
-var resultA;
+var LinkDescarga=[];
+var result=[];
 var UserId;
+var count=0;
 
 function startUserMedia(stream) {
   var input = audio_context.createMediaStreamSource(stream);
@@ -37,12 +38,13 @@ function Grabar(button){
 
   setTimeout(function(){ 
     stopRecording(button);    
-    button.disabled = false;
+    button.disabled = false; 
     },5010);
 
-  setTimeout(function(){
-    button.value=LinkDescarga;
-    UserId = document.getElementById("correo").value;
+  setTimeout(function(){    
+    
+    //button.value=LinkDescarga;
+    //UserId = document.getElementById("correo").value;
     //downloadURI(LinkDescarga,UserId+".wav");
   },5100);
   
@@ -54,15 +56,23 @@ function blobToDataURL(blob) {
     var a = new FileReader();
     a.onload = function(e) {}
     a.readAsDataURL(blob);
-
     
-    resultA = a;
+    result[count] = a;
         
 }
 
-function returnBinary(){
-  return resultA;
+function returnBinary1(){
+  return result[0];
 }
+function returnBinary2(){
+  return result[1];
+}
+function returnBinary3(){
+  return result[2];
+}
+
+
+
 
 function ObtenerURL(){
   return LinkDescarga;
@@ -101,7 +111,6 @@ function createDownloadLink() {
 
 function handleWAV(blob) {
 
-
   if (currentEditedSoundIndex !== -1) {
     $('#recordingslist tr:nth-child(' + (currentEditedSoundIndex + 1) + ')').remove();
   }
@@ -109,18 +118,33 @@ function handleWAV(blob) {
   var url = URL.createObjectURL(blob);
 
   // `blobURL` : `"blob:http://example.com/7737-4454545-545445"`
-fetch(url).then(response => response.blob())
-.then(blob => { 
-  const fd = new FormData();
-  fd.append("linkDescarga", blob, "wav"); // where `.ext` matches file `MIME` type  
-  return fetch("/voiceIt", {method:"POST", body:fd})
-})
-.then(response => response.ok)
-.then(res => console.log(res))
-.catch(err => console.log(err));
-
+  /*
+    fetch(url).then(response => response.blob())
+    .then(blob => { 
+      const fd = new FormData();
+      fd.append("linkDescarga", blob, "wav"); // where `.ext` matches file `MIME` type  
+      return fetch("/voiceIt", {method:"POST", body:fd})
+    })
+    .then(response => response.ok)
+    .then(res => console.log(res))
+    .catch(err => console.log(err));
+  */
   blobToDataURL(blob);
-  LinkDescarga=url;
+
+  var f = new FileReader();
+    f.onload = function(e) {
+        audio_context.decodeAudioData(e.target.result, function(buffer) {
+          console.warn(buffer);
+          
+        }, function(e) {
+          console.warn(e);
+        });
+    };
+    f.readAsArrayBuffer(blob);
+
+
+  LinkDescarga[count]=url;
+  count++;
   var toggler;
   
 
