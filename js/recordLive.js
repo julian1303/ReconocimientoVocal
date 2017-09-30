@@ -60,7 +60,7 @@ function blobToDataURL(blob) {
     a.onload = function(e) {}
     a.readAsDataURL(blob);
 
-    if(accion="autenticar"){
+    if(accion=="autenticar"){
       resultA=a;
     }
     else{
