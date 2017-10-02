@@ -88,6 +88,7 @@
                     <i class="material-icons prefix">lock</i>
                     <input class="validate"  type="password" id="ContraseñaEliminarUsuario" name="password">   
                     <label for="Contraseña">Contraseña</label>
+                    <input value="Eliminar usuario" type="hidden"  name="accion"  >
                   </div>
                   <br>
                   <div class="center-align">
@@ -207,8 +208,7 @@
     </div>
     </div>
   
-      <script>//Validaciones
-
+  <script>//Validaciones
         function validarContraseña(){
 
           var minNumberofChars = 6;
@@ -438,10 +438,9 @@
               }
             }
         }
-        
-      </script>
+  </script>
 
-      <script>//Carga del binaryData para crear huella
+  <script>//Carga del binaryData para crear huella
         function loadBinary(e){
 
             var data_uri1 = returnBinary1();
@@ -472,9 +471,9 @@
             //swal({title: 'Correcto',text: raw_image_data, type: 'success',confirmButtonText: 'Cool'});
 
         }
-      </script>
+  </script>
 
-      <script>//Carga del binaryData para autenticar
+  <script>//Carga del binaryData para autenticar
         function loadBinaryA(e){
            
 
@@ -492,16 +491,16 @@
 
             var raw_image_data = data_uri.result.replace(/^data\:audio\/\w+\;base64\,/, '');
 
-            document.getElementById('mydataA1').value = raw_image_data;
-            document.getElementById('myform').submit()
+            document.getElementById('mydataA').value = raw_image_data;
+            document.getElementById('myformA').submit()
             
 
             //swal({title: 'Correcto',text: raw_image_data, type: 'success',confirmButtonText: 'Cool'});
 
         }
-      </script>
+  </script>
 
-      <script>//Funcion que ejecuta la accion de grabar 3 veces
+  <script>//Funcion que ejecuta la accion de grabar 3 veces
         function Grabar2(button){          
           
           b=button;
@@ -696,9 +695,9 @@
 
         
         }
-      </script>
+  </script>
 
-      <script>//Funcion que ejecuta la accion de grabar en el javascript          
+  <script>//Funcion que ejecuta la accion de grabar en el javascript          
           function Grabar3(button){
 
             b=button;
@@ -756,7 +755,7 @@
                 )
               }
           }
-      </script>
+  </script>
 
   <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 
@@ -775,6 +774,8 @@
 
 </body>
 </html>
+
+
 
 
 <?php
@@ -814,7 +815,7 @@
         $text = guardarJson($response);
 
         if ($text["Result"] == "Success") {
-            echo "<script>swal({title: 'Correcto',text: 'Autenticacion exitosa', type: 'success',confirmButtonText: 'Cool'});</script>";
+            echo "<script>swal({title: 'Correcto',text: 'Se elimino el usuario correctamente', type: 'success',confirmButtonText: 'Cool'});</script>";
         } else {
             $r = $text["Result"];
             echo "<script>swal({ title: 'Error!',  text: '$r',  type: 'error',  confirmButtonText: 'Cool'})</script>";
@@ -972,7 +973,7 @@
 
     if ($accion === "autenticacion") {
 
-        $encoded_data = $_POST['mydata'];
+        $encoded_data = $_POST['mydataA'];
         $binary_data = base64_decode( $encoded_data );
 
         $email=  $_POST["email"];
@@ -989,9 +990,9 @@
         if ($text["ResponseCode"] == "SUC") {
 
         $r2 = $text["Confidence"];
-             echo "<script><script>setTimeout(function(){
+             echo "<script>setTimeout(function(){
                 
-              swal({title: 'Correcto',text: 'Autenticacion exitosa con una confidencialidad del $r2 ', type: 'success',confirmButtonText: 'Cool'});
+              swal({title: 'Correcto',html: 'Autenticacion exitosa <br> con una confidencialidad del $r2 ', type: 'success',confirmButtonText: 'Cool'});
 
               },3500);
 
