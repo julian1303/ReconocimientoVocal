@@ -283,7 +283,7 @@
 
 <?php
     require_once("VoiceIt.php");
-    $myVoiceIt = new VoiceIt("ae6e25717c44451280823f8615ed454a");
+    $myVoiceIt = new VoiceIt();
     error_reporting(E_ERROR | E_WARNING | E_PARSE);
 
     $accion = $_POST["accion"];
