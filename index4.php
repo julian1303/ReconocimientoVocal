@@ -38,10 +38,10 @@
           </ul>
           <a href="#" data-activates="slide-out" class="button-collapse show-on-large"><i class="material-icons">menu</i></a>
           <a id="logo-container" href="." class="brand-logo"></a>
-          <ul class="right hide-on-med-and-down">
+          <ul class="right hide-on-med-and-down">            
             <li><a href="\ReconocimientoFacial\VoiceIt3\index.php">Reconocimiento Vocal</a></li>
           </ul>
-          <ul id="nav-mobile" class="side-nav">           
+          <ul id="nav-mobile" class="side-nav">            
             <li><a href="\ReconocimientoFacial\VoiceIt3\index.php">Reconocimiento Vocal</a></li>
           </ul>        
         </div>
@@ -74,63 +74,38 @@
   
   <br><br>
 
-  
-  <div class="container picker__header"><!--Crear huella --> 
+  <div class="container picker__header"><!--Eliminar Usuario-->
     <div class="row">
       <div class="col s12 m12 l6 offset-l3">
         <div class="col s12 card #212121 grey darken-4 z-depth-5">
           <div class="card-content white-text">
-             <h3 class="center-align ">Crear huella vocal</h3>
+             <h3 class="center-align ">Eliminar Usuario</h3>
             <div class="row">
-              <form id="myform" class="col s10 offset-s1" action="index3.php" method="post">
+              <form id="EliminarUsuarioform" class="col s10 offset-s1" action="index.php"  method="post">
                 <div>
-
                   <div class="input-field">
-                    <input class="validate" type="email" id="correoCrearHuella" name="email" onblur="validarCorreo('correoCrearHuella')">
-                    <label class="valign-wrapper" for="correo">Correo electronico</label>                    
-                  </div> 
-
+                    <input class="validate" type="email" id="CorreoEliminarUsuario" name="email" onblur="validarCorreo('CorreoEliminarUsuario')">
+                    <label class="valign-wrapper" for="Correo">Correo electronico</label>                    
+                  </div>
                   <div class="input-field">
                     <i class="material-icons prefix">lock</i>
-                    <input class="validate"  type="password" id="ContraseñaCrearHuella" name="password">   
-                    <label class="valign-wrapper" for="Contraseña">Contraseña</label>                 
+                    <input class="validate"  type="password" id="ContraseñaEliminarUsuario" name="password">   
+                    <label class="valign-wrapper" for="Contraseña">Contraseña</label>
+                    <input value="Eliminar usuario" type="hidden"  name="accion"  >
                   </div>
-
-                  <div class="input-field grey-text ">
-                     <i class="material-icons prefix valign-wrapper white-text">g_translate</i>
-                    <select  id="selectorC" name="idioma">        
-                      <!--Cambio de color en 5476, felcha en 7024-->            
-                      <option value="" disabled selected>Idioma</option>
-                      <option value="es-CO">Español</option>
-                      <option value="en-US">Ingles</option>
-                    </select>
-                  </div>
-
-                  <br><br>
-
-                  <div class="center-align">
-                    <button  class="btn btn-floating waves-light white" type="button" value="crearHuella" onclick="Grabar2(this);" required ><i class="material-icons left black-text">mic</i></button><label><h5>Grabar</h5></label>
-
-                    <input id="mydata1" type="hidden" name="mydata1" value=""/>
-                    <input id="mydata2" type="hidden" name="mydata2" value=""/>
-                    <input id="mydata3" type="hidden" name="mydata3" value=""/>
-                    <input value="Crear huella" type="hidden"  name="accion"  >
-                  </div>
-
                   <br>
-
                   <div class="center-align">
-                    <input class=" waves-light btn #1565c0 blue darken-3 col s12" onclick="validarFormCrearHuella()" type="button" id="btn-submit" value="Enviar">
+                    <input class=" waves-light btn #1565c0 blue darken-3 col s12" type="button" onclick="validarFormEliminarUsuario()" id="btn-submit" name="accion" value="Eliminar usuario">
                   </div>
-
                 </div>
               </form>
             </div>
           </div>
         </div>
       </div>
+    </div>    
     </div>
-  </div>
+  
   
 
   <br><br>
@@ -169,30 +144,30 @@
 
 
   <script>//Validaciones
-/*
-        function validarContraseña(){
+    /*        
+            function validarContraseña(){
 
-          var minNumberofChars = 6;
+              var minNumberofChars = 6;
 
-          var Contra1 = document.getElementById('CUContraseña').value;
-          var Contra2 = document.getElementById('ConfirmarContraseña').value;
+              var Contra1 = document.getElementById('CUContraseña').value;
+              var Contra2 = document.getElementById('ConfirmarContraseña').value;
 
-          if (Contra1 != Contra2){        
-            document.getElementById('CUContraseña').className="validate invalid";
-            document.getElementById('ConfirmarContraseña').className="validate invalid";
-          }
-          else{
-            if(Contra1.length < minNumberofChars){
-              document.getElementById('CUContraseña').className="validate invalid";
-              document.getElementById('ConfirmarContraseña').className="validate invalid"; 
+              if (Contra1 != Contra2){        
+                document.getElementById('CUContraseña').className="validate invalid";
+                document.getElementById('ConfirmarContraseña').className="validate invalid";
+              }
+              else{
+                if(Contra1.length < minNumberofChars){
+                  document.getElementById('CUContraseña').className="validate invalid";
+                  document.getElementById('ConfirmarContraseña').className="validate invalid"; 
+                }
+                else{
+                  document.getElementById('CUContraseña').className="validate valid";
+                  document.getElementById('ConfirmarContraseña').className="validate valid";
+                }
+              }
             }
-            else{
-              document.getElementById('CUContraseña').className="validate valid";
-              document.getElementById('ConfirmarContraseña').className="validate valid";
-            }
-          }
-        }
-
+    */
         function validarCorreo(e){
           var id = e;
           var correo = document.getElementById(id).value;
@@ -206,53 +181,53 @@
             document.getElementById(id).className="validate valid";
           }
         }
-
-        function ValidateNumberOnly(){
-          if ((event.keyCode < 48 || event.keyCode > 57)){
-            if(event.keyCode!=8){
-              event.returnValue = false;
+    /*
+            function ValidateNumberOnly(){
+              if ((event.keyCode < 48 || event.keyCode > 57)){
+                if(event.keyCode!=8){
+                  event.returnValue = false;
+                }
+              }
             }
-          }
-        }
 
-        function validarFormCrearUsuario(){
+            function validarFormCrearUsuario(){
 
-            var validateStateContraseña = document.getElementById('CUContraseña').className;
-            var validateStateCContraseña = document.getElementById('ConfirmarContraseña').className;
-            var validateStateCorreo = document.getElementById('correoCrearUsuario').className;
+                var validateStateContraseña = document.getElementById('CUContraseña').className;
+                var validateStateCContraseña = document.getElementById('ConfirmarContraseña').className;
+                var validateStateCorreo = document.getElementById('correoCrearUsuario').className;
 
-            var Contra1 = document.getElementById('CUContraseña').value;
-            var Contra2 = document.getElementById('ConfirmarContraseña').value;
-            var minNumberofChars = 6;
+                var Contra1 = document.getElementById('CUContraseña').value;
+                var Contra2 = document.getElementById('ConfirmarContraseña').value;
+                var minNumberofChars = 6;
 
-            if(document.getElementById('Nombre').value!="" && document.getElementById('Apellido').value!="" && document.getElementById('correoCrearUsuario').value!="" && document.getElementById('CUContraseña').value!="" && document.getElementById('ConfirmarContraseña').value!="" && document.getElementById('Telefono').value!=""){
+                if(document.getElementById('Nombre').value!="" && document.getElementById('Apellido').value!="" && document.getElementById('correoCrearUsuario').value!="" && document.getElementById('CUContraseña').value!="" && document.getElementById('ConfirmarContraseña').value!="" && document.getElementById('Telefono').value!=""){
 
-              if(validateStateContraseña!="validate invalid" &&  validateStateCContraseña!="validate invalid"){
-                  if(validateStateCorreo != "validate invalid"){
-                    document.getElementById('FormCrearUsuario').submit();
+                  if(validateStateContraseña!="validate invalid" &&  validateStateCContraseña!="validate invalid"){
+                      if(validateStateCorreo != "validate invalid"){
+                        document.getElementById('FormCrearUsuario').submit();
+                      }
+                      else{
+                        swal({ title: 'Error!',  html: 'El correo debe tener el siguente formato <br> <b>xxxxxx@xxxx.com</b>',  type: 'error',  confirmButtonText: 'OK'})
+                      }
                   }
                   else{
-                    swal({ title: 'Error!',  html: 'El correo debe tener el siguente formato <br> <b>xxxxxx@xxxx.com</b>',  type: 'error',  confirmButtonText: 'OK'})
+                    
+                    if(Contra1.length < minNumberofChars || Contra2.length < minNumberofChars){
+                      swal({ title: 'Error!',  text: 'La contraseña debe tener minimo 6 caracteres',  type: 'error',  confirmButtonText: 'OK'})
+                      
+                    }
+                    else{
+                        swal({ title: 'Error!',  text: 'La contraseña no coincide',  type: 'error',  confirmButtonText: 'OK'})
+                    }
                   }
-              }
-              else{
-                
-                if(Contra1.length < minNumberofChars || Contra2.length < minNumberofChars){
-                  swal({ title: 'Error!',  text: 'La contraseña debe tener minimo 6 caracteres',  type: 'error',  confirmButtonText: 'OK'})
-                  
+
+
                 }
                 else{
-                    swal({ title: 'Error!',  text: 'La contraseña no coincide',  type: 'error',  confirmButtonText: 'OK'})
+                    swal({ title: 'Error!',  text: 'Debe ingresar todos los campos',  type: 'error',  confirmButtonText: 'OK'})
                 }
-              }
-
-
             }
-            else{
-                swal({ title: 'Error!',  text: 'Debe ingresar todos los campos',  type: 'error',  confirmButtonText: 'OK'})
-            }
-        }
-
+    */
         function validarFormEliminarUsuario(){
 
             var validateStateContraseña = document.getElementById('ContraseñaEliminarUsuario').className;
@@ -262,7 +237,7 @@
 
               if(validateStateContraseña!="validate invalid"){
                   if(validateStateCorreo != "validate invalid"){
-                    document.getElementById('FormCrearUsuario').submit();
+                    document.getElementById('EliminarUsuarioform').submit();
                   }
                   else{
                     swal({ title: 'Error!',  html: 'El correo debe tener el siguente formato <br> <b>xxxxxx@xxxx.com</b>',  type: 'error',  confirmButtonText: 'OK'})
@@ -278,100 +253,99 @@
                 swal({ title: 'Error!',  text: 'Debe ingresar todos los campos',  type: 'error',  confirmButtonText: 'OK'})
             }
         }
-*/
-         function validarFormCrearHuella(){
+    /*
+            function validarFormCrearHuella(){
 
-            var validateStateContraseña = document.getElementById('ContraseñaCrearHuella').className;
-            var validateStateCorreo = document.getElementById('correoCrearHuella').className;
-            var idioma = document.getElementById('selectorC').value;
-            
+                var validateStateContraseña = document.getElementById('ContraseñaCrearHuella').className;
+                var validateStateCorreo = document.getElementById('correoCrearHuella').className;
+                var idioma = document.getElementById('selectorC').value;
+                
 
-            if(idioma == "en-US"){
+                if(idioma == "en-US"){
 
-                if(document.getElementById('correoCrearHuella').value!="" && document.getElementById('ContraseñaCrearHuella').value!="" ){
-                  
-                    if(validateStateCorreo != "validate invalid"){
-                          loadBinary(idioma);
+                    if(document.getElementById('correoCrearHuella').value!="" && document.getElementById('ContraseñaCrearHuella').value!="" ){
+                      
+                        if(validateStateCorreo != "validate invalid"){
+                              loadBinary(idioma);
+                        }
+                        else{
+                          swal({ title: 'Error!',  html: 'The email should have the following format <br> <b>xxxxxx@xxxx.com</b>',  type: 'error',  confirmButtonText: 'OK'})
+                        }                                                    
                     }
                     else{
-                      swal({ title: 'Error!',  html: 'The email should have the following format <br> <b>xxxxxx@xxxx.com</b>',  type: 'error',  confirmButtonText: 'OK'})
-                    }                                                    
+                        swal({ title: 'Error!',  text: 'You must enter all the fields',  type: 'error',  confirmButtonText: 'OK'})
+                    }
                 }
                 else{
-                    swal({ title: 'Error!',  text: 'You must enter all the fields',  type: 'error',  confirmButtonText: 'OK'})
-                }
+                
+                    if(document.getElementById('correoCrearHuella').value!="" && document.getElementById('ContraseñaCrearHuella').value!="" ){
+                      
+                      if(document.getElementById('selectorC').value!=""){    
+                          if(validateStateCorreo != "validate invalid"){
+                                loadBinary(idioma);
+                          }
+                          else{
+                            swal({ title: 'Error!',  html: 'El correo debe tener el siguente formato <br> <b>xxxxxx@xxxx.com</b>',  type: 'error',  confirmButtonText: 'OK'})
+                          }                
+                      }
+                      else{
+                        swal({ title: 'Error!',  text: 'Por favor seleccione un idioma',  type: 'error',  confirmButtonText: 'OK'})
+                      }
+                      
+                    }
+                    else{
+                        swal({ title: 'Error!',  text: 'Debe ingresar todos los campos',  type: 'error',  confirmButtonText: 'OK'})
+                    }
+              }
             }
-            else{
-            
-                if(document.getElementById('correoCrearHuella').value!="" && document.getElementById('ContraseñaCrearHuella').value!="" ){
-                  
-                  if(document.getElementById('selectorC').value!=""){    
+
+            function validarFormAutenticar(){
+
+                var validateStateContraseña = document.getElementById('ContraseñaAutenticar').className;
+                var validateStateCorreo = document.getElementById('CorreoAutenticar').className;
+                var idioma = document.getElementById('selectorA').value;
+
+                if(idioma == "en-US"){
+
+                    if(document.getElementById('CorreoAutenticar').value!=="" && document.getElementById('ContraseñaAutenticar').value!=="" ){
+                      
+                        if(validateStateCorreo != "validate invalid"){
+                              loadBinaryA(idioma);
+                        }
+                        else{
+                          swal({ title: 'Error!',  html: 'The email should have the following format <br> <b>xxxxxx@xxxx.com</b>',  type: 'error',  confirmButtonText: 'OK'})
+                        }
+
+                    }
+                    else{
+                        swal({ title: 'Error!',  text: 'You must enter all the fields',  type: 'error',  confirmButtonText: 'OK'})
+                    }
+
+                }
+                else{ 
+                  if(document.getElementById('CorreoAutenticar').value!=="" && document.getElementById('ContraseñaAutenticar').value!=="" ){
+                    
+                    if(document.getElementById('selectorA').value!=""){
+
                       if(validateStateCorreo != "validate invalid"){
-                            loadBinary(idioma);
+                            loadBinaryA(idioma);
                       }
                       else{
                         swal({ title: 'Error!',  html: 'El correo debe tener el siguente formato <br> <b>xxxxxx@xxxx.com</b>',  type: 'error',  confirmButtonText: 'OK'})
-                      }                
-                  }
-                  else{
-                    swal({ title: 'Error!',  text: 'Por favor seleccione un idioma',  type: 'error',  confirmButtonText: 'OK'})
-                  }
-                  
-                }
-                else{
-                    swal({ title: 'Error!',  text: 'Debe ingresar todos los campos',  type: 'error',  confirmButtonText: 'OK'})
-                }
-          }
-        }
-/*
-        function validarFormAutenticar(){
+                      }
 
-            var validateStateContraseña = document.getElementById('ContraseñaAutenticar').className;
-            var validateStateCorreo = document.getElementById('CorreoAutenticar').className;
-            var idioma = document.getElementById('selectorA').value;
-
-            if(idioma == "en-US"){
-
-                if(document.getElementById('CorreoAutenticar').value!=="" && document.getElementById('ContraseñaAutenticar').value!=="" ){
-                  
-                    if(validateStateCorreo != "validate invalid"){
-                          loadBinaryA(idioma);
                     }
                     else{
-                      swal({ title: 'Error!',  html: 'The email should have the following format <br> <b>xxxxxx@xxxx.com</b>',  type: 'error',  confirmButtonText: 'OK'})
+                      swal({ title: 'Error!',  text: 'Por favor seleccione un idioma',  type: 'error',  confirmButtonText: 'OK'})
                     }
-
-                }
-                else{
-                    swal({ title: 'Error!',  text: 'You must enter all the fields',  type: 'error',  confirmButtonText: 'OK'})
-                }
-
-            }
-            else{ 
-              if(document.getElementById('CorreoAutenticar').value!=="" && document.getElementById('ContraseñaAutenticar').value!=="" ){
-                
-                if(document.getElementById('selectorA').value!=""){
-
-                  if(validateStateCorreo != "validate invalid"){
-                        loadBinaryA(idioma);
+                    
                   }
                   else{
-                    swal({ title: 'Error!',  html: 'El correo debe tener el siguente formato <br> <b>xxxxxx@xxxx.com</b>',  type: 'error',  confirmButtonText: 'OK'})
+                      swal({ title: 'Error!',  text: 'Debe ingresar todos los campos',  type: 'error',  confirmButtonText: 'OK'})
                   }
-
                 }
-                else{
-                  swal({ title: 'Error!',  text: 'Por favor seleccione un idioma',  type: 'error',  confirmButtonText: 'OK'})
-                }
-                
-              }
-              else{
-                  swal({ title: 'Error!',  text: 'Debe ingresar todos los campos',  type: 'error',  confirmButtonText: 'OK'})
-              }
             }
-        }
-*/
-
+    */
         function validarSeleccionIdioma(button){
 
             
@@ -429,7 +403,7 @@
             document.getElementById('myform').submit();
             
 
-            //swal({title: 'Correcto',text: raw_image_data, type: 'success',confirmButtonText: 'Cool'});
+            //swal({title: 'Correcto',text: raw_image_data, type: 'success',confirmButtonText: 'Aceptar'});
 
         }
   </script>
@@ -456,7 +430,7 @@
             document.getElementById('myformA').submit()
             
 
-            //swal({title: 'Correcto',text: raw_image_data, type: 'success',confirmButtonText: 'Cool'});
+            //swal({title: 'Correcto',text: raw_image_data, type: 'success',confirmButtonText: 'Aceptar'});
 
         }
   </script>
@@ -794,10 +768,10 @@
         $text = guardarJson($response);
 
         if ($text["Result"] == "Success") {
-            echo "<script>swal({title: 'Correcto',text: 'Usuario eliminado correctamente', type: 'success',confirmButtonText: 'Cool'});</script>";
+            echo "<script>swal({title: 'Correcto',text: 'Usuario eliminado correctamente', type: 'success',confirmButtonText: 'Aceptar'});</script>";
         } else {
             $r = $text["Result"];
-            echo "<script>swal({ title: 'Error!',  text: '$r',  type: 'error',  confirmButtonText: 'Cool'})</script>";
+            echo "<script>swal({ title: 'Error!',  text: '$r',  type: 'error',  confirmButtonText: 'Aceptar'})</script>";
         }
      }
 
@@ -969,9 +943,9 @@
         if ($text["ResponseCode"] == "SUC") {
 
         $r2 = $text["Confidence"];
-             echo "<script><script>setTimeout(function(){
+             echo "<script>setTimeout(function(){
                 
-              swal({title: 'Correcto',text: 'Autenticacion exitosa con una confidencialidad del $r2 ', type: 'success',confirmButtonText: 'Cool'});
+              swal({title: 'Correcto',text: 'Autenticacion exitosa con una confidencialidad del $r2 ', type: 'success',confirmButtonText: 'Aceptar'});
 
               },3500);
 
@@ -979,7 +953,7 @@
 
             
         } else {
-            echo "<script>swal({ title: 'Error!',  text: '$r',  type: 'error',  confirmButtonText: 'Cool'})</script>";
+            echo "<script>swal({ title: 'Error!',  text: '$r',  type: 'error',  confirmButtonText: 'Aceptar'})</script>";
         }
      }
 
